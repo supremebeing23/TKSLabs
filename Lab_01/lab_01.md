@@ -1,5 +1,10 @@
+
 #Лабораторна робота №1. Знайомство із системою контейнеризації Docker
+
+
 ##3Task 5 Запустити hello-world
+
+###5.1
 ```
 sudo docker run hello-world
 
@@ -24,7 +29,7 @@ Share images, automate workflows, and more with a free Docker ID:
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
-5.2 Version
+###5.2 Version
 
 ```
 sudo docker images  hello-world
@@ -33,7 +38,8 @@ hello-world   latest    feb5d9fea6a5   17 months ago   13.3kB
 ```
 
 ##task 6 ellerbrock/alpine-bash-git
-##6.1
+
+###6.1
 ```
 ubuntulabs@ubuntulabs-virtualbox:~$ sudo docker pull ellerbrock/alpine-bash-git
 ubuntulabs@ubuntulabs-virtualbox:~$ sudo docker images ellerbrock/alpine-bash-git
@@ -41,7 +47,7 @@ REPOSITORY                   TAG       IMAGE ID       CREATED       SIZE
 ellerbrock/alpine-bash-git   latest    67830aff234a   3 years ago   26.7MB
 ```
 
-##6.2
+###6.2
 ```
 sudo docker run -it -d --name lab01 --entrypoint /bin/bash ellerbrock/alpine-bash-git
 [sudo] пароль до ubuntulabs: 
