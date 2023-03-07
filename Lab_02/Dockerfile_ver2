@@ -1,0 +1,6 @@
+FROM python:3
+COPY dockerbasics2.py /
+COPY DockerBasics2.docx /
+RUN pip install flask
+RUN pip install python-docx
+CMD ["python", "./dockerbasics2.py"]
