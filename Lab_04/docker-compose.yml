@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+  db: 
+    image: mysql:latest
+    container_name: mysql
+    environment:
+       MYSQL_DATABASE: db
+       MYSQL_ROOT_USER: root
+       MYSQL_ROOT_PASSWORD: 321
+       MYSQL_ROOT_HOST: localhost
+    ports:
+      # <Port exposed>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - /data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest   
+    environment:
+      PMA_HOST: mysql
+    ports:
+      - '8080:80'
+    expose:
+      - '8080'

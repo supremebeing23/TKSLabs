@@ -1,0 +1,23 @@
+nano docker-compose.yml
+docker compose up
+[+] Running 2/2
+ ✔ Container lab_04-phpmyadmin-1  Created                                                                              1.1s
+ ✔ Container mysql                Created                                                                              1.1s
+Attaching to lab_04-phpmyadmin-1, mysql
+mysql                | 2023-04-06 13:05:33+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.32-1.el8 started.
+mysql                | 2023-04-06 13:05:33+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+mysql                | 2023-04-06 13:05:33+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.32-1.el8 started.
+lab_04-phpmyadmin-1  | AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.20.0.3. Set the 'ServerName' directive globally to suppress this message
+mysql                | '/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+lab_04-phpmyadmin-1  | AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.20.0.3. Set the 'ServerName' directive globally to suppress this message
+lab_04-phpmyadmin-1  | [Thu Apr 06 13:05:33.983851 2023] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.56 (Debian) PHP/8.1.17 configured -- resuming normal operations
+lab_04-phpmyadmin-1  | [Thu Apr 06 13:05:33.983919 2023] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+mysql                | 2023-04-06T13:05:34.199017Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+mysql                | 2023-04-06T13:05:34.200320Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.32) starting as process 1
+mysql                | 2023-04-06T13:05:34.207067Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+mysql                | 2023-04-06T13:05:35.651473Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+mysql                | 2023-04-06T13:05:37.879643Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+mysql                | 2023-04-06T13:05:37.879773Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+mysql                | 2023-04-06T13:05:37.920553Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+mysql                | 2023-04-06T13:05:37.939124Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+mysql                | 2023-04-06T13:05:37.940095Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.32'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
