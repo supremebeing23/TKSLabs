@@ -2,12 +2,17 @@
 
 ## **Task 2.1**
 
-being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03/$ mkdir web_server
-being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03/$ cd web_server
-being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03/web_server$ echo "Hello, world!" > index.html
-being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03/web_server$ cd /home/being/TKSLabs/Lab_03/
-being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03/$ `nano Dockerfile`
-being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03$ `docker build -t apacheweb .`
+    being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03/$ mkdir web_server
+
+    being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03/$ cd web_server
+
+    being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03/web_server$ echo "Hello, world!" > index.html
+
+    being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03/web_server$ cd /home/being/TKSLabs/Lab_03/
+
+    being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03/$ nano Dockerfile
+
+    being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03$ `docker build -t apacheweb .`
 
 > [+] Building 100.4s (8/8) FINISHED  => [internal] load build
 > definition from Dockerfile                                            
@@ -24,23 +29,26 @@ being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03$ `docker build -t apacheweb .`
 
  
 
-being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03$ 
-
-docker run -p 8080:80 -v /web_server:/var/www/html/ apacheweb
-
-
-
-AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
-
-being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03$ **docker container ls**
-CONTAINER ID   IMAGE       COMMAND                  CREATED         STATUS         PORTS                                   NAMES
-3546cde2eadd   apacheweb   "apache2ctl -D FOREG…"   2 minutes ago   Up 2 minutes   0.0.0.0:8080->80/tcp, :::8080->80/tcp   distracted_booth
+    being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03$ 
+    
+    docker run -p 8080:80 -v /web_server:/var/www/html/ apacheweb
 
 
 
+> AH00558: apache2: Could not reliably determine the server's fully
+> qualified domain name, using 172.17.0.2. Set the 'ServerName'
+> directive globally to suppress this message
+
+    being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_03$ **docker container ls**
+
+    CONTAINER ID   IMAGE       COMMAND                  CREATED         STATUS         PORTS                                   NAMES
+    3546cde2eadd   apacheweb   "apache2ctl -D FOREG…"   2 minutes ago   Up 2 minutes   0.0.0.0:8080->80/tcp, :::8080->80/tcp   distracted_booth
 
 
-[labs@labs-vmwarevirtualplatform Lab_03]$ 
+
+
+## **Task 2.2**
+**mysql**
 
      docker run -d -p 3306:3306 --name=mysql -v data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=test_db mysql/mysql-server:latest
 
@@ -54,7 +62,9 @@ CONTAINER ID   IMAGE       COMMAND                  CREATED         STATUS      
 > 55d2bc53756bbfcff4426f3af2705e148055aa37b20c898c8e98baa45ba56451
 
 
-[labs@labs-vmwarevirtualplatform Lab_03]$ `docker exec -it 55d2bc53756b bash`
+**mysql user permissions**
+
+     docker exec -it 55d2bc53756b bash
 
     bash-4.4# mysql -u root -p
     Enter password: 
@@ -85,7 +95,9 @@ CONTAINER ID   IMAGE       COMMAND                  CREATED         STATUS      
 
 
 
-[labs@labs-vmwarevirtualplatform Lab_03]$ `docker run -d --name myadmin --link mysql:db -e PMA_HOST=mysql -p 8080:80 phpmyadmin/phpmyadmin:latest`
+**myphpadmin**
+
+    docker run -d --name myadmin --link mysql:db -e PMA_HOST=mysql -p 8080:80 phpmyadmin/phpmyadmin:latest`
 
 > Unable to find image 'phpmyadmin/phpmyadmin:latest' locally latest:
 > Pulling from phpmyadmin/phpmyadmin f1f26f570256: Extracting
