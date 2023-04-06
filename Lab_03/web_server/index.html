@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head><meta charset="UTF-8" /><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",t=>{this.persisted=t.persisted}),window.addEventListener("DOMContentLoaded",()=>{this._preconnect3rdParties()}),this.delayedScripts={normal:[],async:[],defer:[]},this.trash=[],this.allJQueries=[]}_addUserInteractionListener(t){if(document.hidden){t._triggerListener();return}this.triggerEvents.forEach(e=>window.addEventListener(e,t.userEventHandler,{passive:!0})),window.addEventListener("touchstart",t.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",t.touchStartHandler),document.addEventListener("visibilitychange",t.userEventHandler)}_removeUserInteractionListener(){this.triggerEvents.forEach(t=>window.removeEventListener(t,this.userEventHandler,{passive:!0})),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(t){"HTML"!==t.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),t.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"onclick","rocket-onclick"),this._pendingClickStarted())}_onTouchMove(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this._pendingClickFinished()}_onTouchEnd(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(t){t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this.interceptedClicks.push(t),t.preventDefault(),t.stopPropagation(),t.stopImmediatePropagation(),this._pendingClickFinished()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach(t=>{t.target.dispatchEvent(new MouseEvent("click",{view:t.view,bubbles:!0,cancelable:!0}))})}_waitForPendingClicks(){return new Promise(t=>{this._isClickPending?this._pendingClickFinished=t:t()})}_pendingClickStarted(){this._isClickPending=!0}_pendingClickFinished(){this._isClickPending=!1}_renameDOMAttribute(t,e,r){t.hasAttribute&&t.hasAttribute(e)&&(event.target.setAttribute(r,event.target.getAttribute(e)),event.target.removeAttribute(e))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let t=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(e=>{if(e.hasAttribute("src")){let r=new URL(e.src).origin;r!==location.origin&&t.push({src:r,crossOrigin:e.crossOrigin||"module"===e.getAttribute("data-rocket-type")})}}),t=[...new Map(t.map(t=>[JSON.stringify(t),t])).values()],this._batchInjectResourceHints(t,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(this),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(t){console.error(t)}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._waitForPendingClicks().then(()=>{this._replayClicks()}),this._emptyTrash()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(t=>{t.hasAttribute("data-rocket-src")?t.hasAttribute("async")&&!1!==t.async?this.delayedScripts.async.push(t):t.hasAttribute("defer")&&!1!==t.defer||"module"===t.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(t):this.delayedScripts.normal.push(t):this.delayedScripts.normal.push(t)})}async _transformScript(t){return new Promise((await this._littleBreath(),navigator.userAgent.indexOf("Firefox/")>0||""===navigator.vendor)?e=>{let r=document.createElement("script");[...t.attributes].forEach(t=>{let e=t.nodeName;"type"!==e&&("data-rocket-type"===e&&(e="type"),"data-rocket-src"===e&&(e="src"),r.setAttribute(e,t.nodeValue))}),t.text&&(r.text=t.text),r.hasAttribute("src")?(r.addEventListener("load",e),r.addEventListener("error",e)):(r.text=t.text,e());try{t.parentNode.replaceChild(r,t)}catch(i){e()}}:async e=>{function r(){t.setAttribute("data-rocket-status","failed"),e()}try{let i=t.getAttribute("data-rocket-type"),n=t.getAttribute("data-rocket-src");t.text,i?(t.type=i,t.removeAttribute("data-rocket-type")):t.removeAttribute("type"),t.addEventListener("load",function r(){t.setAttribute("data-rocket-status","executed"),e()}),t.addEventListener("error",r),n?(t.removeAttribute("data-rocket-src"),t.src=n):t.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(t.text)))}catch(s){r()}})}async _loadScriptsFromList(t){let e=t.shift();return e&&e.isConnected?(await this._transformScript(e),this._loadScriptsFromList(t)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(t,e){var r=document.createDocumentFragment();t.forEach(t=>{let i=t.getAttribute&&t.getAttribute("data-rocket-src")||t.src;if(i){let n=document.createElement("link");n.href=i,n.rel=e,"preconnect"!==e&&(n.as="script"),t.getAttribute&&"module"===t.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),t.crossOrigin&&(n.crossOrigin=t.crossOrigin),t.integrity&&(n.integrity=t.integrity),r.appendChild(n),this.trash.push(n)}}),document.head.appendChild(r)}_delayEventListeners(t){let e={};function r(t,r){!function t(r){!e[r]&&(e[r]={originalFunctions:{add:r.addEventListener,remove:r.removeEventListener},eventsToRewrite:[]},r.addEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.add.apply(r,arguments)},r.removeEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.remove.apply(r,arguments)});function i(t){return e[r].eventsToRewrite.indexOf(t)>=0?"rocket-"+t:t}}(t),e[t].eventsToRewrite.push(r)}function i(t,e){let r=t[e];Object.defineProperty(t,e,{get:()=>r||function(){},set(i){t["rocket"+e]=r=i}})}r(document,"DOMContentLoaded"),r(window,"DOMContentLoaded"),r(window,"load"),r(window,"pageshow"),r(document,"readystatechange"),i(document,"onreadystatechange"),i(window,"onload"),i(window,"onpageshow")}_delayJQueryReady(t){let e;function r(r){if(r&&r.fn&&!t.allJQueries.includes(r)){r.fn.ready=r.fn.init.prototype.ready=function(e){return t.domReadyFired?e.bind(document)(r):document.addEventListener("rocket-DOMContentLoaded",()=>e.bind(document)(r)),r([])};let i=r.fn.on;r.fn.on=r.fn.init.prototype.on=function(){if(this[0]===window){function t(t){return t.split(" ").map(t=>"load"===t||0===t.indexOf("load.")?"rocket-jquery-load":t).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=t(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(e=>{delete Object.assign(arguments[0],{[t(e)]:arguments[0][e]})[e]})}return i.apply(this,arguments),this},t.allJQueries.push(r)}e=r}r(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>e,set(t){r(t)}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach(t=>t(window).trigger("rocket-jquery-load")),await this._littleBreath();let t=new Event("rocket-pageshow");t.persisted=this.persisted,window.dispatchEvent(t),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){let t=new Map;document.write=document.writeln=function(e){let r=document.currentScript;r||console.error("WPRocket unable to document.write this: "+e);let i=document.createRange(),n=r.parentElement,s=t.get(r);void 0===s&&(s=r.nextSibling,t.set(r,s));let a=document.createDocumentFragment();i.setStart(a,0),a.appendChild(i.createContextualFragment(e)),n.insertBefore(a,s)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise(t=>setTimeout(t)):new Promise(t=>requestAnimationFrame(t))}_emptyTrash(){this.trash.forEach(t=>t.remove())}static run(){let t=new RocketLazyLoadScripts;t._addUserInteractionListener(t)}}RocketLazyLoadScripts.run();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link data-minify="1" href="https://www.cyberciti.biz/faq/wp-content/cache/min/1/faq/wp-content/thesis/boxes/thesis-social-profiles/icons.css?ver=1680684667" data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')" rel="preload" />
+<link data-minify="1" href="https://www.cyberciti.biz/faq/wp-content/cache/min/1/faq/wp-content/thesis/skins/focus/css.css?ver=1680684667" data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" onerror="this.removeAttribute('data-rocket-async')" rel="preload" />
+<title>How to remove non empty Directory in Linux - nixCraft</title><style id="rocket-critical-css">.icon-social{font-family:icon-social;font-size:1.5em;vertical-align:middle}.icon-social+.icon-social{margin-left:.25em}*{margin:0;padding:0}html{word-break:break-word;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}h1,h2{font-weight:400}table{border-collapse:collapse;border-spacing:0;word-break:normal}img{border:0}img{max-width:100%;height:auto}iframe{display:block;max-width:100%}img{display:block}button{overflow:visible;-webkit-appearance:none}body{font-family:Arial,helvetica neue,Helvetica,sans-serif;font-size:18px;line-height:30px;color:#111;overflow-x:hidden}#header{padding-top:19px;padding-bottom:19px;border-bottom:1px solid rgba(0,0,0,.1)}#nav{background-color:#f8f9fa;border-bottom:1px solid rgba(0,0,0,.1)}#content{padding-top:30px;padding-bottom:30px}.container{box-sizing:border-box;padding-left:19px;padding-right:19px}@media all and (min-width:682px){.container{max-width:644px;padding-left:0;padding-right:0;margin-left:auto;margin-right:auto}}@media all and (min-width:704px){.container{max-width:100%;padding-left:30px;padding-right:30px;margin-left:0;margin-right:0}}@media all and (min-width:1100px){.container{max-width:1040px;padding-left:0;padding-right:0;margin-left:auto;margin-right:auto}}.content,.sidebar{box-sizing:border-box}.sidebar{margin-top:30px}@media all and (min-width:682px){.has-sidebar .content,.has-sidebar .sidebar{width:100%;max-width:644px}}@media all and (min-width:1100px){.has-sidebar .columns{display:flex;justify-content:space-between}.has-sidebar .sidebar{margin-top:0;max-width:347px}}a{color:#2692f0;text-decoration:none}p a,.post_content a{text-decoration:underline}.grt h1{font-size:37px;line-height:58px;color:#111;margin-bottom:30px}.grt p,.grt img{margin-bottom:30px}.grt .headline_area .headline{margin-top:0;margin-bottom:0}.grt .headline_area .headline a{color:#111}.grt .byline{font-size:14px;line-height:25px;color:#828282;margin-top:7px}.grt .byline .post_author:after,.grt .byline .post_date:after,.grt .byline .num_comments_link:after{display:block;height:0;content:'\a';white-space:pre}.grt .drop_cap{font-size:60px;line-height:1em;margin-right:7px;float:left}.grt .headline_area{margin-bottom:30px}.grt .post_box:after,.grt .headline_area:after,.grt .byline:after,.grt .post_content:after{display:table;clear:both;content:''}@media all and (min-width:682px){.grt .headline_area{position:relative}.grt .byline{margin-top:12px}.grt .byline .post_author:after,.grt .byline .post_date:after,.grt .byline .num_comments_link:after{display:none}.grt .byline .post_author~.post_date_intro:before,.grt .byline .post_author~.num_comments_link:before,.grt .byline .post_date~.num_comments_link:before{color:#828282;content:'\2022\0020'}}label{display:block;font-weight:700}input,textarea{display:block;width:100%;box-sizing:border-box;font-family:inherit;font-size:inherit;line-height:1em;font-weight:inherit;padding:7px;border:1px solid rgba(0,0,0,.2)}textarea{line-height:inherit}button{display:inline-block;width:auto;font-family:inherit;font-size:inherit;font-weight:400;line-height:1em;vertical-align:top;color:#111;text-decoration:none;background-color:#eee;padding:7px 12px;border:1px solid rgba(0,0,0,.1);border-bottom-width:4px;border-bottom-color:rgba(0,0,0,.25);border-radius:12px;-webkit-appearance:none}#site_title{font-size:47px;line-height:72px;font-weight:700;display:inline-block;vertical-align:bottom}#site_title.has-logo{margin-bottom:19px}#site_title.has-logo:last-child{margin-bottom:0}#comments #respond p{margin-bottom:19px}#comments #respond #cancel-comment-reply-link{font-weight:400;margin-left:12px}.sidebar{border-top:1px solid rgba(0,0,0,.1);padding-top:30px}.sidebar>div{margin-bottom:49px}.sidebar>div>:last-child{margin-bottom:0}.sidebar .textwidget>:last-child{margin-bottom:0}@media all and (min-width:1100px){.sidebar{font-size:14px;line-height:25px;border-top:0;padding-top:0}.sidebar>div{margin-bottom:30px}}table,th,td{border:1px solid #d1d1d1}table{border-collapse:separate;border-spacing:0;border-width:1px 0 0 1px;margin:0 0 1.75em;table-layout:auto;width:100%}.nixcraftsearchbox{padding:7px;border:1px solid rgba(0,0,0,.2);box-sizing:border-box;width:100%;background-color:#f7f4d7;border-radius:4px}.crumbs{color:#828282;padding-top:19px;padding-bottom:19px}#header{border-bottom:0;padding-top:0;padding-bottom:0}.mejs-offscreen{border:0;clip:rect(1px,1px,1px,1px);-webkit-clip-path:inset(50%);clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-wrap:normal}.mejs-container *{box-sizing:border-box}.mejs-poster{background-position:50% 50%;background-repeat:no-repeat;background-size:cover;left:0;position:absolute;top:0;z-index:1}.mejs-overlay{-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;left:0;position:absolute;top:0}.mejs-layer{z-index:1}.mejs-overlay-button{background:url(https://www.cyberciti.biz/faq/wp-includes/js/mediaelement/mejs-controls.svg) no-repeat;background-position:0 -39px;height:80px;width:80px}.mejs-overlay-loading{height:80px;width:80px}.mejs-overlay-loading-bg-img{-webkit-animation:a 1s linear infinite;animation:a 1s linear infinite;background:transparent url(https://www.cyberciti.biz/faq/wp-includes/js/mediaelement/mejs-controls.svg) -160px -40px no-repeat;display:block;height:80px;width:80px;z-index:1}@-webkit-keyframes a{to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}@keyframes a{to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}.mejs-container-keyboard-inactive [role=slider],.mejs-container-keyboard-inactive a{outline:0}.mejs-time-buffering,.mejs-time-float,.mejs-time-float-corner,.mejs-time-float-current{border-radius:2px;display:block;height:10px;position:absolute}.mejs-time-buffering{-webkit-animation:b 2s linear infinite;animation:b 2s linear infinite;background:-webkit-linear-gradient(135deg,hsla(0,0%,100%,.4) 25%,transparent 0,transparent 50%,hsla(0,0%,100%,.4) 0,hsla(0,0%,100%,.4) 75%,transparent 0,transparent);background:linear-gradient(-45deg,hsla(0,0%,100%,.4) 25%,transparent 0,transparent 50%,hsla(0,0%,100%,.4) 0,hsla(0,0%,100%,.4) 75%,transparent 0,transparent);background-size:15px 15px;width:100%}@-webkit-keyframes b{0%{background-position:0 0}to{background-position:30px 0}}@keyframes b{0%{background-position:0 0}to{background-position:30px 0}}.mejs-time-buffering{left:0;-webkit-transform:scaleX(0);-ms-transform:scaleX(0);transform:scaleX(0);-webkit-transform-origin:0 0;-ms-transform-origin:0 0;transform-origin:0 0;width:100%}.mejs-time-buffering{-webkit-transform:scaleX(1);-ms-transform:scaleX(1);transform:scaleX(1)}.mejs-time-float{background:#eee;border:1px solid #333;bottom:100%;color:#111;display:none;height:17px;margin-bottom:9px;position:absolute;text-align:center;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);width:36px}.mejs-time-float-current{display:block;left:0;margin:2px;text-align:center;width:30px}.mejs-time-float-corner{border:5px solid #eee;border-color:#eee transparent transparent;border-radius:0;display:block;height:0;left:50%;line-height:0;position:absolute;top:100%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);width:0}.mejs-volume-button>.mejs-volume-slider{-webkit-backface-visibility:hidden;background:rgba(50,50,50,.7);border-radius:0;bottom:100%;display:none;height:115px;left:50%;margin:0;position:absolute;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);width:25px;z-index:1}.mejs-volume-total{background:hsla(0,0%,100%,.5);height:100px;left:50%;margin:0;position:absolute;top:8px;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);width:2px}.mejs-volume-current{left:0;margin:0;width:100%}.mejs-volume-current,.mejs-volume-handle{background:hsla(0,0%,100%,.9);position:absolute}.mejs-volume-handle{border-radius:1px;height:6px;left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);width:16px}.mejs-container *{font-family:Helvetica,Arial}.mejs-controls .mejs-time-rail span{border-radius:0}.mejs-overlay-loading{background:0 0}</style>
+<link href="https://www.cyberciti.com/faq/feed/" rel="alternate" type="application/rss+xml" title="nixCraft feed" />
+<link href="https://www.cyberciti.biz/faq/wp-content/themes/thesis/lib/images/favicon.ico" rel="shortcut icon" />
+<meta name='robots' content='index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1' />
+
+<meta name="description" content="Explains how to remove non empty directory Linux using the rmdir and rm command line options including all files and subdirectories." />
+<link rel="canonical" href="https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="How to remove non empty Directory in Linux" />
+<meta property="og:description" content="Explains how to remove non empty directory Linux using the rmdir and rm command line options including all files and subdirectories." />
+<meta property="og:url" content="https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/" />
+<meta property="og:site_name" content="nixCraft" />
+<meta property="article:publisher" content="https://facebook.com/nixcraft" />
+<meta property="article:author" content="https://facebook.com/nixcraft" />
+<meta property="article:published_time" content="2017-09-20T09:05:33+00:00" />
+<meta property="article:modified_time" content="2022-07-30T17:28:06+00:00" />
+<meta property="og:image" content="https://www.cyberciti.biz/media/new/faq/2017/09/Remove-non-empty-directory-Linux-command.jpg" />
+<meta name="author" content="Vivek Gite" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content="@https://twitter.com/nixcraft" />
+<meta name="twitter:site" content="@nixcraft" />
+<meta name="twitter:label1" content="Written by" />
+<meta name="twitter:data1" content="Vivek Gite" />
+<meta name="twitter:label2" content="Est. reading time" />
+<meta name="twitter:data2" content="3 minutes" />
+<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/#article","isPartOf":{"@id":"https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/"},"author":{"name":"Vivek Gite","@id":"https://www.cyberciti.biz/faq/#/schema/person/10a0329482f8543fae00407f1446b761"},"headline":"How to remove non empty Directory in Linux","datePublished":"2017-09-20T09:05:33+00:00","dateModified":"2022-07-30T17:28:06+00:00","mainEntityOfPage":{"@id":"https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/"},"wordCount":425,"commentCount":3,"publisher":{"@id":"https://www.cyberciti.biz/faq/#/schema/person/10a0329482f8543fae00407f1446b761"},"image":{"@id":"https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/#primaryimage"},"thumbnailUrl":"https://www.cyberciti.biz/media/new/faq/2017/09/Remove-non-empty-directory-Linux-command.jpg","keywords":["Easy","rm command","rmdir command"],"articleSection":["Linux","UNIX"],"inLanguage":"en-US","potentialAction":[{"@type":"CommentAction","name":"Comment","target":["https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/#respond"]}]},{"@type":"WebPage","@id":"https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/","url":"https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/","name":"How to remove non empty Directory in Linux - nixCraft","isPartOf":{"@id":"https://www.cyberciti.biz/faq/#website"},"primaryImageOfPage":{"@id":"https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/#primaryimage"},"image":{"@id":"https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/#primaryimage"},"thumbnailUrl":"https://www.cyberciti.biz/media/new/faq/2017/09/Remove-non-empty-directory-Linux-command.jpg","datePublished":"2017-09-20T09:05:33+00:00","dateModified":"2022-07-30T17:28:06+00:00","description":"Explains how to remove non empty directory Linux using the rmdir and rm command line options including all files and subdirectories.","breadcrumb":{"@id":"https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/#primaryimage","url":"https://www.cyberciti.biz/media/new/faq/2017/09/Remove-non-empty-directory-Linux-command.jpg","contentUrl":"https://www.cyberciti.biz/media/new/faq/2017/09/Remove-non-empty-directory-Linux-command.jpg"},{"@type":"BreadcrumbList","@id":"https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.cyberciti.biz/faq/"},{"@type":"ListItem","position":2,"name":"How to remove non empty Directory in Linux"}]},{"@type":"WebSite","@id":"https://www.cyberciti.biz/faq/#website","url":"https://www.cyberciti.biz/faq/","name":"nixCraft","description":"Linux / Unix tutorials for new and seasoned sysadmin || developers","publisher":{"@id":"https://www.cyberciti.biz/faq/#/schema/person/10a0329482f8543fae00407f1446b761"},"inLanguage":"en-US"},{"@type":["Person","Organization"],"@id":"https://www.cyberciti.biz/faq/#/schema/person/10a0329482f8543fae00407f1446b761","name":"Vivek Gite","image":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.cyberciti.biz/faq/#/schema/person/image/","url":"https://www.cyberciti.biz/media/new/faq/2017/04/new-nixcraft-logo.png","contentUrl":"https://www.cyberciti.biz/media/new/faq/2017/04/new-nixcraft-logo.png","width":42,"height":46,"caption":"Vivek Gite"},"logo":{"@id":"https://www.cyberciti.biz/faq/#/schema/person/image/"},"description":"Vivek Gite is the founder of nixCraft, the oldest running blog about Linux and open source. He wrote more than 7k+ posts and helped numerous readers to master IT topics. Join the nixCraft community via RSS Feed, Email Newsletter or follow on Twitter.","sameAs":["https://vivekgite.com/","https://facebook.com/nixcraft","https://www.instagram.com/nixcraft/","https://twitter.com/https://twitter.com/nixcraft","https://www.youtube.com/channel/UCrinGwmzp-LNcfvDeoBLAYQ","https://nixcraft.tumblr.com/"],"url":"https://www.cyberciti.biz/faq/author/administrator/"}]}</script>
+
+<link rel="alternate" type="application/rss+xml" title="nixCraft &raquo; How to remove non empty Directory in Linux Comments Feed" href="https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/feed/" />
+<style id='rocket-lazyload-inline-css' type='text/css'>
+.rll-youtube-player{position:relative;padding-bottom:56.23%;height:0;overflow:hidden;max-width:100%;}.rll-youtube-player:focus-within{outline: 2px solid currentColor;outline-offset: 5px;}.rll-youtube-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;background:0 0}.rll-youtube-player img{bottom:0;display:block;left:0;margin:auto;max-width:100%;width:100%;position:absolute;right:0;top:0;border:none;height:auto;-webkit-transition:.4s all;-moz-transition:.4s all;transition:.4s all}.rll-youtube-player img:hover{-webkit-filter:brightness(75%)}.rll-youtube-player .play{height:100%;width:100%;left:0;top:0;position:absolute;background:url(https://www.cyberciti.biz/faq/wp-content/plugins/wp-rocket/assets/img/youtube.png) no-repeat center;background-color: transparent !important;cursor:pointer;border:none;}
+</style>
+<link rel="icon" href="https://www.cyberciti.biz/media/new/faq/2018/11/new_icon_amp.png" sizes="32x32" />
+<link rel="icon" href="https://www.cyberciti.biz/media/new/faq/2018/11/new_icon_amp.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://www.cyberciti.biz/media/new/faq/2018/11/new_icon_amp.png" />
+<meta name="msapplication-TileImage" content="https://www.cyberciti.biz/media/new/faq/2018/11/new_icon_amp.png" />
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript><script type="rocketlazyloadscript">
+/*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
+(function(w){"use strict";if(!w.loadCSS){w.loadCSS=function(){}}
+var rp=loadCSS.relpreload={};rp.support=(function(){var ret;try{ret=w.document.createElement("link").relList.supports("preload")}catch(e){ret=!1}
+return function(){return ret}})();rp.bindMediaToggle=function(link){var finalMedia=link.media||"all";function enableStylesheet(){link.media=finalMedia}
+if(link.addEventListener){link.addEventListener("load",enableStylesheet)}else if(link.attachEvent){link.attachEvent("onload",enableStylesheet)}
+setTimeout(function(){link.rel="stylesheet";link.media="only x"});setTimeout(enableStylesheet,3000)};rp.poly=function(){if(rp.support()){return}
+var links=w.document.getElementsByTagName("link");for(var i=0;i<links.length;i++){var link=links[i];if(link.rel==="preload"&&link.getAttribute("as")==="style"&&!link.getAttribute("data-loadcss")){link.setAttribute("data-loadcss",!0);rp.bindMediaToggle(link)}}};if(!rp.support()){rp.poly();var run=w.setInterval(rp.poly,500);if(w.addEventListener){w.addEventListener("load",function(){rp.poly();w.clearInterval(run)})}else if(w.attachEvent){w.attachEvent("onload",function(){rp.poly();w.clearInterval(run)})}}
+if(typeof exports!=="undefined"){exports.loadCSS=loadCSS}
+else{w.loadCSS=loadCSS}}(typeof global!=="undefined"?global:this))
+</script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" async=true>
+(function() {
+  var host = 'cyberciti.biz';
+  var element = document.createElement('script');
+  var firstScript = document.getElementsByTagName('script')[0];
+  var url = 'https://cmp.quantcast.com'
+    .concat('/choice/', '4ZXA92xpZ8gEv', '/', host, '/choice.js?tag_version=V2');
+  var uspTries = 0;
+  var uspTriesLimit = 3;
+  element.async = true;
+  element.type = 'text/javascript';
+  element.src = url;
+
+  firstScript.parentNode.insertBefore(element, firstScript);
+
+  function makeStub() {
+    var TCF_LOCATOR_NAME = '__tcfapiLocator';
+    var queue = [];
+    var win = window;
+    var cmpFrame;
+
+    function addFrame() {
+      var doc = win.document;
+      var otherCMP = !!(win.frames[TCF_LOCATOR_NAME]);
+
+      if (!otherCMP) {
+        if (doc.body) {
+          var iframe = doc.createElement('iframe');
+
+          iframe.style.cssText = 'display:none';
+          iframe.name = TCF_LOCATOR_NAME;
+          doc.body.appendChild(iframe);
+        } else {
+          setTimeout(addFrame, 5);
+        }
+      }
+      return !otherCMP;
+    }
+
+    function tcfAPIHandler() {
+      var gdprApplies;
+      var args = arguments;
+
+      if (!args.length) {
+        return queue;
+      } else if (args[0] === 'setGdprApplies') {
+        if (
+          args.length > 3 &&
+          args[2] === 2 &&
+          typeof args[3] === 'boolean'
+        ) {
+          gdprApplies = args[3];
+          if (typeof args[2] === 'function') {
+            args[2]('set', true);
+          }
+        }
+      } else if (args[0] === 'ping') {
+        var retr = {
+          gdprApplies: gdprApplies,
+          cmpLoaded: false,
+          cmpStatus: 'stub'
+        };
+
+        if (typeof args[2] === 'function') {
+          args[2](retr);
+        }
+      } else {
+        if(args[0] === 'init' && typeof args[3] === 'object') {
+          args[3] = Object.assign(args[3], { tag_version: 'V2' });
+        }
+        queue.push(args);
+      }
+    }
+
+    function postMessageEventHandler(event) {
+      var msgIsString = typeof event.data === 'string';
+      var json = {};
+
+      try {
+        if (msgIsString) {
+          json = JSON.parse(event.data);
+        } else {
+          json = event.data;
+        }
+      } catch (ignore) {}
+
+      var payload = json.__tcfapiCall;
+
+      if (payload) {
+        window.__tcfapi(
+          payload.command,
+          payload.version,
+          function(retValue, success) {
+            var returnMsg = {
+              __tcfapiReturn: {
+                returnValue: retValue,
+                success: success,
+                callId: payload.callId
+              }
+            };
+            if (msgIsString) {
+              returnMsg = JSON.stringify(returnMsg);
+            }
+            if (event && event.source && event.source.postMessage) {
+              event.source.postMessage(returnMsg, '*');
+            }
+          },
+          payload.parameter
+        );
+      }
+    }
+
+    while (win) {
+      try {
+        if (win.frames[TCF_LOCATOR_NAME]) {
+          cmpFrame = win;
+          break;
+        }
+      } catch (ignore) {}
+
+      if (win === window.top) {
+        break;
+      }
+      win = win.parent;
+    }
+    if (!cmpFrame) {
+      addFrame();
+      win.__tcfapi = tcfAPIHandler;
+      win.addEventListener('message', postMessageEventHandler, false);
+    }
+  };
+
+  makeStub();
+
+  var uspStubFunction = function() {
+    var arg = arguments;
+    if (typeof window.__uspapi !== uspStubFunction) {
+      setTimeout(function() {
+        if (typeof window.__uspapi !== 'undefined') {
+          window.__uspapi.apply(window.__uspapi, arg);
+        }
+      }, 500);
+    }
+  };
+
+  var checkIfUspIsReady = function() {
+    uspTries++;
+    if (window.__uspapi === uspStubFunction && uspTries < uspTriesLimit) {
+      console.warn('USP is not accessible');
+    } else {
+      clearInterval(uspInterval);
+    }
+  };
+
+  if (typeof window.__uspapi === 'undefined') {
+    window.__uspapi = uspStubFunction;
+    var uspInterval = setInterval(checkIfUspIsReady, 6000);
+  }
+})();
+</script>
+
+<script type="rocketlazyloadscript" async data-rocket-src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7825705102693166" crossorigin="anonymous"></script></head>
+<body class="template-single has-sidebar">
+<div id="header">
+<div class="container">
+<center> <div id="site_title" class="has-logo"><a href="https://www.cyberciti.biz/faq/"><img id="logo" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2042%2046'%3E%3C/svg%3E" alt="nixCraft" width="42" height="46" data-lazy-src="https://www.cyberciti.biz/media/new/faq/2017/06/new-nixcraft-logo-cyberciti.biz_.png" /><noscript><img id="logo" src="https://www.cyberciti.biz/media/new/faq/2017/06/new-nixcraft-logo-cyberciti.biz_.png" alt="nixCraft" width="42" height="46" /></noscript></a></div>
+</center> </div>
+</div>
+<nav id="nav">
+<div class="container">
+<center> <div class="crumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+<span class="crumbs-crumb crumbs-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+<a href="https://www.cyberciti.biz" itemprop="item"><span itemprop="name">nixCraft</span></a>
+<meta itemprop="position" content="1" />
+</span>
+<span class="crumbs-sep crumbs-item">&rarr;</span>
+<span class="crumbs-crumb crumbs-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+<a href="https://www.cyberciti.biz/faq/" class="crumbs-home" itemprop="item"><span itemprop="name">Howto</span></a>
+<meta itemprop="position" content="2" />
+</span>
+<span class="crumbs-sep crumbs-item">&rarr;</span>
+<span class="crumbs-crumb crumbs-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+<a href="https://www.cyberciti.biz/faq/category/linux/" itemprop="item"><span itemprop="name">Linux</span></a>
+<meta itemprop="position" content="3" />
+</span>
+<span class="crumbs-sep crumbs-item">&rarr;</span>
+<span class="crumbs-crumb crumbs-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+<span itemprop="name">In Linux, how do I remove a directory?</span>
+<meta itemprop="position" content="4" />
+</span>
+</div>
+</center> </div>
+</nav>
+<div id="content">
+<div class="container columns">
+<div class="content grt">
+<article id="post-146679" class="post_box text top">
+<div class="headline_area">
+<h1 class="headline"><a href="https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/" rel="bookmark">How to remove non empty Directory in Linux</a></h1>
+<div class="byline">
+<span class="post_author_intro">Author:</span> <span class="post_author">Vivek Gite</span>
+<span class="post_date_intro">Last updated:</span> <span class="post_date date_modified" title="2022-07-30">July 30, 2022</span>
+<a class="num_comments_link" href="https://www.cyberciti.biz/faq/how-to-remove-non-empty-directory-in-linux/#comments" rel="nofollow"><span class="num_comments">3</span> comments</a>
+</div>
+</div>
+<div class="post_content">
+<div style="float: right; margin-top: 0; margin-left: 5px;"><a title="See all GNU/Linux related FAQ" href="https://www.cyberciti.biz/faq/category/linux/"><img width="128" height="128" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20128%20128'%3E%3C/svg%3E" alt="See all GNU/Linux related FAQ" border="0" data-lazy-src="https://www.cyberciti.biz/media/new/category/old/linux-logo.png" /><noscript><img  width="128" height="128" src="https://www.cyberciti.biz/media/new/category/old/linux-logo.png" alt="See all GNU/Linux related FAQ" border="0" /></noscript></a></div><span class="drop_cap">I</span> am trying to delete a directory in Linux using the rmdir command. However, I am getting an error message that read as follows:<br />
+<em><kbd><strong>rmdir: failed to remove 'trip-pictures': Directory not empty</strong></kbd></em><br />
+How can I remove non empty directory in Linux using the cli?<br />
+<span id="more-146679"></span><br />
+There are two commands that one can use to delete non empty directories in Linux operating system:</p><div style="text-align: center;
+    background-color: rgb(247, 247, 247);
+    border: 1px solid rgb(243, 243, 243);
+    width: 100%;
+    padding-bottom: 18px;
+    clear: both;">
+<small style="text-transform: uppercase; color: rgb(204, 204, 204);">Advertisement</small><br>
+<script type="rocketlazyloadscript" async data-rocket-src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7825705102693166" crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7825705102693166" data-ad-slot="7261197400" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script type="rocketlazyloadscript">
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<ol>
+<li><kbd>rmdir command</kbd> &#8211; Delete directory only if it is empty.</li>
+<li><kbd>rm command</kbd> &#8211; Remove directory and all files even if it is NOT empty by passing the <kbd>-r</kbd> to the rm to remove a directory that is not empty. In other words, remove non empty folder.</li>
+</ol>
+<p>The following commands works with CentOS, RHEL, Fedora, Alpine, Arch, Debian, Ubuntu and all other Linux distros. Let us see some examples.<br />
+<style>
+table.tutorialrequirements {
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+}
+table.tutorialrequirements td, table.tutorialrequirements th {
+  padding: 5px 5px;
+}
+table.tutorialrequirements tr:nth-child(even) {
+  background: #f7f7f7;
+}
+table.tutorialrequirements thead {
+  background: #f7f7f7;
+}
+table.tutorialrequirements thead th {
+  font-weight: bold;
+  text-align: center;
+}
+</style>
+<table class="tutorialrequirements">
+<thead><tr>
+<th colspan="2">Tutorial details</th>
+</tr></thead> <tbody><tr> <td width="25%"><a name="tutorial_difficulty_level"></a><span title="The relative difficulty of completing this tutorial task">Difficulty level</span></td> <td width="75%"><a href="https://www.cyberciti.biz/faq/tag/easy/" title="See all Easy Linux / Unix System Administrator Tutorials">Easy</a></td> </tr> <tr> <td><a name="tutorial_difficulty_level"></a><span title="Indicates whether the root account requires for administrative purposes to complete this tutorial">Root privileges</span></td> <td>No</td> </tr> <tr> <td><a name="tutorial_difficulty_requirements"></a><span title="Minimum requirements to complete this tutorial">Requirements</span></td> <td>Linux terminal</td> </tr> <tr> <td><span title="Primary tutorial category">Category</span></td> <td><a title="See ALL other tutorials in File Management category" href="#File_Management">File Management</a></td> </tr> <tr> <td><span title="This tutorial has prerequisites. Please make sure you have the required tools/apps/developer tools available before proceeding">Prerequisites</span></td> <td>rm command</td> </tr> <tr> <td><a name="tutorial_os_compatibility"></a><span title="This tutorial is also compatible with the operating systems (OS) mentioned in the following column">OS compatibility</span></td> <td><span title="Berkeley Software Distribution including FreeBSD, NetBSD, OpenBSD, DragonFly BSD and others">BSD</span> <span style="color: #828282;">•</span> <a href="https://www.cyberciti.biz/faq/category/linux/" title="See all Linux distributions tutorials">Linux</a> <span style="color: #828282;">•</span> <a href="https://www.cyberciti.biz/faq/category/mac-os-x/" title="See all macOS (OS X) tutorials">macOS</a> <span style="color: #828282;">•</span> <a href="https://www.cyberciti.biz/faq/category/unix/" title="See all Unix tutorials">Unix</td> </tr></tbody> <tr> <td><a name="tutorial_est_reading_time"></a><span title="Estimated reading time for this tutorial page">Est. reading time</span></td> <td>3 minutes</td> </tr></tbody></table>
+<h2>Procedure to remove non empty directory in Linux</h2>
+<p>We use the rm command to delete a directory that is not empty. The syntax is:<br />
+<code>rm -rf dir-name<br />
+rm -rf /path/to/dir/name</code><br />
+Be careful when you use the rm command with -r and -f options. The -r option remove directories and their contents recursively including all files. The -f option to rm command ignore nonexistent files and arguments, never prompt for anything. There is no undo option. So you have to be very careful with rm -rf command. Let us see some examples.</p>
+<h3>Examples for removing non empty directory under Linux</h3>
+<p>Trying to remove trip-pictures directory with the rmdir command in Linx:<br />
+<code>rmdir trip-pictures</code><br />
+Sample outputs:</p>
+<pre>rmdir: failed to remove 'trip-picture/': Directory not empty</pre>
+<p>To see files inside the directory use ls command
+<code>ls -l trip-pictures<br />
+ls trip-pictures</code><br />
+To delete all files inside trip-pictures including folder itself run the following rm command:<br />
+<code>rm -rf trip-pictures</code><br />
+<a href="https://www.cyberciti.biz/media/new/faq/2017/09/Remove-non-empty-directory-Linux-command.jpg"><img decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20599%20384'%3E%3C/svg%3E" alt="Remove non empty directory Linux command" width="599" height="384" class="aligncenter size-full wp-image-146680" data-lazy-srcset="https://www.cyberciti.biz/media/new/faq/2017/09/Remove-non-empty-directory-Linux-command.jpg 599w, https://www.cyberciti.biz/media/new/faq/2017/09/Remove-non-empty-directory-Linux-command-300x192.jpg 300w" data-lazy-sizes="(max-width: 599px) 100vw, 599px" data-lazy-src="https://www.cyberciti.biz/media/new/faq/2017/09/Remove-non-empty-directory-Linux-command.jpg" /><noscript><img decoding="async" src="https://www.cyberciti.biz/media/new/faq/2017/09/Remove-non-empty-directory-Linux-command.jpg" alt="Remove non empty directory Linux command" width="599" height="384" class="aligncenter size-full wp-image-146680" srcset="https://www.cyberciti.biz/media/new/faq/2017/09/Remove-non-empty-directory-Linux-command.jpg 599w, https://www.cyberciti.biz/media/new/faq/2017/09/Remove-non-empty-directory-Linux-command-300x192.jpg 300w" sizes="(max-width: 599px) 100vw, 599px" /></noscript></a></p>
+<h4>How to get visual confirmation about deleting directory</h2>
+<p>Pass the <kbd>-v</kbd> to the rm command:<br />
+<code>rm -vrf dir1<br />
+rm -vrf dir1 dir2</code><br />
+Sample outputs:</p>
+<pre>removed 'dir1/resume.txt'
+removed 'dir1/bar.txt'
+removed 'dir1/foo.txt'
+removed directory 'dir1'
+removed directory 'dir2/pictures'
+removed directory 'dir2'</pre>
+<h4>How to get confirmation prompt before every removal of a dir</h3>
+<p>You need to pass the <kbd>-i</kbd> option to the rm command:<br />
+<code>rm -ir foo</code><br />
+Sample outputs:</p>
+<pre>rm: descend into directory 'foo/'? y
+rm: remove regular empty file 'foo/bash.tar.gz'? y
+rm: remove regular empty file 'foo/db.sql'? y
+rm: remove directory 'foo/'? y</pre>
+<p>To get prompt once before removing more than three files, or when removing recursively; less intrusive than <kbd>-i</kbd>, while still giving protection against most mistakes pass the <kbd>-I</kbd> option:<br />
+<code>rm -Ir bar</code><br />
+Sample outputs:</p>
+<pre>rm: remove 1 argument recursively? y</pre>
+<p>Want to get info on all rm and rmdir switches? Try the <a href="https://bash.cyberciti.biz/guide/Help_command" title="Help command - Linux Bash Shell Scripting Tutorial Wiki">help command</a> as follows:<br />
+<code>rm --help<br />
+rmdir --help</code></p>
+<h2>Conclusion</h2>
+<p>You learned how to remove non empty directory under Linux or Unix-like operating systems using command line options. For more information see rm command and rmdir command command man pages by typing the following <a href="https://bash.cyberciti.biz/guide/Man_command" title="man command in Linux with Examples - Linux Shell Scripting Tutorial">man command</a> command:<br />
+<code>man rm<br />
+man rmdir</code></p>
+</div>
+</article>
+<p class="author_description"><span class="author_description_intro">About the author:</span>
+Vivek Gite is the founder of nixCraft, the oldest running blog about Linux and open source. He wrote more than 7k+ posts and helped numerous readers to master IT topics. Join the nixCraft community via <a title="Get nixCraft updates using RSS feed" href="https://www.cyberciti.com/atom/atom.xml" rel="noopener" target="_blank">RSS Feed</a> or <a title="Get nixCraft updates using Email" href="https://newsletter.cyberciti.biz/subscription?f=1ojtmiv8892KQzyMsTF4YPr1pPSAhX2rq7Qfe5DiHMgXwKo892di4MTWyOdd976343rcNR6LhdG1f7k9H8929kMNMdWu3g" rel="noopener" target="_blank">Email Newsletter</a>.
+<br><br>
+🥺 <span class="highlight">Was this helpful?</span> Please add <a href="#respond" title="Please add your comment below ↓ to show your appreciation or feedback to the author">a comment to show your appreciation or feedback</a>. nixCraft is a one-person show, and many of you use Adblocker. Keeping the site online is challenging, with everyone blocking Ads 😔. Please support the nixCraft with a <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LJF8UGD7QKF3U" rel="noopener" target="_blank">PayPal donation</a> or <a href="https://www.patreon.com/nixcraft" rel="noopener" target="_blank">Patreon</a>.
+</p>
+<div>
+<center>
+<form method="GET" class="search-form" action="https://www.google.com/cse" target="_top">
+<div class="search-form-inner">
+<input name="cx" type="hidden" value="c8e444503670f107a" />
+<input name="ie" type="hidden" value="UTF-8" />
+<input class="nixcraftsearchbox" type="search" placeholder="🔎 To search, type & hit enter..." name="q" required>
+</div>
+</form>
+</div>
+</center>
+<br />
+<div class="crp_related     crp-text-only"><span style="font-weight: bold;font-size: 20px;margin-bottom: 10px">Related Tutorials</span><div class="wp_rp_wrap"><div class="wp_rp_content"><ul class="related_post"><li><a class="wp_rp_thumbnail" href="https://www.cyberciti.biz/faq/how-to-delete-a-non-empty-directory-in-linux-shell/"><img width="150" height="150" alt="Delete a non-empty directory when you get directory not&hellip;" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E" data-lazy-src="https://www.cyberciti.biz/images/rp/13/15.jpg"><noscript><img width="150" height="150" alt="Delete a non-empty directory when you get directory not&hellip;" src="https://www.cyberciti.biz/images/rp/13/15.jpg"></noscript></a><a href="https://www.cyberciti.biz/faq/how-to-delete-a-non-empty-directory-in-linux-shell/" class="crp_link post-146191"><span class="crp_title">Delete a non-empty directory when you get directory not&hellip;</span></a></li><li><a class="wp_rp_thumbnail" href="https://www.cyberciti.biz/faq/how-to-redirecting-non-www-to-www-in-nginx-with-ssltls-http/"><img width="100" height="100" alt="How to redirect non-www to www HTTP / TLS /SSL traffic on&hellip;" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3C/svg%3E" data-lazy-src="https://www.cyberciti.biz/images/rp/13/55.jpg"><noscript><img width="100" height="100" alt="How to redirect non-www to www HTTP / TLS /SSL traffic on&hellip;" src="https://www.cyberciti.biz/images/rp/13/55.jpg"></noscript></a><a href="https://www.cyberciti.biz/faq/how-to-redirecting-non-www-to-www-in-nginx-with-ssltls-http/" class="crp_link post-146265"><span class="crp_title">How to redirect non-www to www HTTP / TLS /SSL traffic on&hellip;</span></a></li><li><a class="wp_rp_thumbnail" href="https://www.cyberciti.biz/faq/redirect-nginx-non-www-to-www-domain-over-ssl/"><img width="96" height="96" alt="How to redirect Nginx non-www to www domain over SSL" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2096%2096'%3E%3C/svg%3E" data-lazy-src="https://www.cyberciti.biz/images/rp/13/35.jpg"><noscript><img width="96" height="96" alt="How to redirect Nginx non-www to www domain over SSL" src="https://www.cyberciti.biz/images/rp/13/35.jpg"></noscript></a><a href="https://www.cyberciti.biz/faq/redirect-nginx-non-www-to-www-domain-over-ssl/" class="crp_link post-146841"><span class="crp_title">How to redirect Nginx non-www to www domain over SSL</span></a></li><li><a class="wp_rp_thumbnail" href="https://www.cyberciti.biz/faq/linux-how-do-i-remove-all-empty-directories/"><img width="96" height="96" alt="Linux how do I remove all empty directories?" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2096%2096'%3E%3C/svg%3E" data-lazy-src="https://www.cyberciti.biz/images/rp/13/53.jpg"><noscript><img width="96" height="96" alt="Linux how do I remove all empty directories?" src="https://www.cyberciti.biz/images/rp/13/53.jpg"></noscript></a><a href="https://www.cyberciti.biz/faq/linux-how-do-i-remove-all-empty-directories/" class="crp_link post-122"><span class="crp_title">Linux how do I remove all empty directories?</span></a></li><li><a class="wp_rp_thumbnail" href="https://www.cyberciti.biz/faq/linux-remove-all-partitions-data-empty-disk/"><img width="150" height="150" alt="Linux Remove All Partitions / Data And Create Empty Disk" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E" data-lazy-src="https://www.cyberciti.biz/images/rp/13/51.jpg"><noscript><img width="150" height="150" alt="Linux Remove All Partitions / Data And Create Empty Disk" src="https://www.cyberciti.biz/images/rp/13/51.jpg"></noscript></a><a href="https://www.cyberciti.biz/faq/linux-remove-all-partitions-data-empty-disk/" class="crp_link post-8281"><span class="crp_title">Linux Remove All Partitions / Data And Create Empty Disk</span></a></li><li><a class="wp_rp_thumbnail" href="https://www.cyberciti.biz/faq/unix-linux-shell-remove-delete-empty-lines/"><img width="96" height="96" alt="Linux / Unix: Shell Remove Empty Lines" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2096%2096'%3E%3C/svg%3E" data-lazy-src="https://www.cyberciti.biz/images/rp/13/47.jpg"><noscript><img width="96" height="96" alt="Linux / Unix: Shell Remove Empty Lines" src="https://www.cyberciti.biz/images/rp/13/47.jpg"></noscript></a><a href="https://www.cyberciti.biz/faq/unix-linux-shell-remove-delete-empty-lines/" class="crp_link post-13235"><span class="crp_title">Linux / Unix: Shell Remove Empty Lines</span></a></li><li><a class="wp_rp_thumbnail" href="https://www.cyberciti.biz/faq/howto-empty-linux-unix-directory-delete-all-files/"><img width="100" height="100" alt="Linux / UNIX: How To Empty Directory" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3C/svg%3E" data-lazy-src="https://www.cyberciti.biz/images/rp/13/42.jpg"><noscript><img width="100" height="100" alt="Linux / UNIX: How To Empty Directory" src="https://www.cyberciti.biz/images/rp/13/42.jpg"></noscript></a><a href="https://www.cyberciti.biz/faq/howto-empty-linux-unix-directory-delete-all-files/" class="crp_link post-11109"><span class="crp_title">Linux / UNIX: How To Empty Directory</span></a></li></ul></div></div><div class="crp_clear"></div></div><style>
+table.nixcraftcmdtabls {
+  /*width: 100%;
+  height: 100%;*/
+  width: auto;
+  height: auto;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+table.nixcraftcmdtabls td, table.nixcraftcmdtabls th {
+  padding: 5px;
+  font-size: 95%;
+}
+table.nixcraftcmdtabls tr:nth-child(even) {
+  background: #f7f7f7;
+}
+table.nixcraftcmdtabls thead {
+  background: #f7f7f7;
+}
+table.nixcraftcmdtabls thead th {
+  font-weight: bold;
+  text-align: center;
+}
+table.nixcraftcmdtabls abbr { 
+  border-bottom: none;   
+  text-decoration: none; 
+ }
+</style><a name="Commands"></a><table class="nixcraftcmdtabls"><thead><tr> <th>Category</th> <th>List of Unix and Linux commands</th></tr></thead><tbody><tr><td><a name="Ansible"></a><span title="ANS (Ansible) command category">Ansible</span></td><td><a title='How to check Ansible version on Linux/Unix' href='https://www.cyberciti.biz/faq/command-to-see-ansible-version-check-on-linux-unix/'>Check version</a> <span style="color: #828282;">&#8226;</span> <a title='How to install Ansible on Fedora 32 for IT and server automation' href='https://www.cyberciti.biz/faq/how-to-install-ansible-on-fedora-for-it-and-server-automation/'>Fedora</a> <span style="color: #828282;">&#8226;</span> <a title='How to prepare FreeBSD server to be managed by Ansible tool' href='https://www.cyberciti.biz/faq/how-to-prepare-freebsd-server-to-be-managed-by-ansible-tool/'>FreeBSD</a> <span style="color: #828282;">&#8226;</span> <a title='Linux Tutorial: Install Ansible Configuration Management And IT Automation Tool' href='https://www.cyberciti.biz/python-tutorials/linux-tutorial-install-ansible-configuration-management-and-it-automation-tool/'>Linux</a> <span style="color: #828282;">&#8226;</span> <a title='How to install Ansible on Ubuntu 18.04 for IT automation' href='https://www.cyberciti.biz/faq/how-to-install-ansible-on-ubuntu-18-04-for-it-automation/'>Ubuntu 18.04</a> <span style="color: #828282;">&#8226;</span> <a title='How to Install latest version of Ansible on Ubuntu Linux' href='https://www.cyberciti.biz/faq/how-to-install-and-configure-latest-version-of-ansible-on-ubuntu-linux/'>Ubuntu</a> <span style="color: #828282;">&#8226;</span> <a title='How to install Ansible on MacOS using CLI' href='https://www.cyberciti.biz/faq/how-to-install-ansible-on-apple-macos-x-using-command-line/'>macOS</a></td></tr><tr><td><a name="Backup_Management"></a><span title="BAK (Backup Management) command category">Backup Management</span></td><td><a title='Debian / Ubuntu Linux Install and Configure Remote Filesystem Snapshot with rsnapshot Incremental Backup Utility' href='https://www.cyberciti.biz/faq/linux-rsnapshot-backup-howto/'>Debian/Ubuntu</a> <span style="color: #828282;">&#8226;</span> <a title='FreeBSD Install Rsnapshot Filesystem Snapshot Backup Utility' href='https://www.cyberciti.biz/faq/howto-install-rsnapshot-filesystem-snapshot-backup-utility-in-freebsd/'>FreeBSD</a> <span style="color: #828282;">&#8226;</span> <a title='How to install rsnapshot remote backup server on Red Hat/CentOS Linux' href='https://www.cyberciti.biz/faq/redhat-cetos-linux-remote-backup-snapshot-server/'>RHEL</a></td></tr><tr><td><a name="Database_Server"></a><span title="DBS (Database Server) command category">Database Server</span></td><td><a title='Shell Script To Backup MySql Database Server' href='https://bash.cyberciti.biz/backup/backup-mysql-database-server-2/'>Backup MySQL server</a> <span style="color: #828282;">&#8226;</span> <a title='How to install and configure MariaDB Galera as master to master replication cluster on Ubuntu 16.04 LTS' href='https://www.cyberciti.biz/faq/howto-install-configure-mariadb-galera-master-cluster-ubuntulinux/'>MariaDB Galera cluster</a> <span style="color: #828282;">&#8226;</span> <a title='How to set up MariaDB SSL and secure connections from clients' href='https://www.cyberciti.biz/faq/how-to-setup-mariadb-ssl-and-secure-connections-from-clients/'>MariaDB TLS/SSL</a> <span style="color: #828282;">&#8226;</span> <a title='How to set up MariaDB Master Slave replication with SSL on Ubuntu Linux' href='https://www.cyberciti.biz/faq/how-to-set-up-mariadb-master-slave-replication-with-ssl-on-ubuntu-linux/'>MariaDB replication</a> <span style="color: #828282;">&#8226;</span> <a title='How to install MySQL server on Ubuntu 20.04 Linux' href='https://www.cyberciti.biz/faq/install-mysql-server-8-on-ubuntu-20-04-lts-linux/'>MySQL Server</a> <span style="color: #828282;">&#8226;</span> <a title='How Do I Enable Remote Access To MySQL Database Server?' href='https://www.cyberciti.biz/tips/how-do-i-enable-remote-access-to-mysql-database-server.html'>MySQL remote access</a></td></tr><tr><td><a name="Download_managers"></a><span title="DL (Download managers) command category">Download managers</span></td><td><a title='Wget Command in Linux with Examples' href='https://www.cyberciti.biz/tips/linux-wget-your-ultimate-command-line-downloader.html'>wget</a></td></tr><tr><td><a name="Driver_Management"></a><span title="DM (Driver Management) command category">Driver Management</span></td><td><a title='Linux Nvidia Driver How To - Linux / Unix Q &amp;amp; A from nixCraft' href='https://www.cyberciti.biz/faq/tag/linux-nvidia-driver/'>Linux Nvidia driver</a> <span style="color: #828282;">&#8226;</span> <a title='Linux find out what kernel drivers loaded with lsmod command' href='https://www.cyberciti.biz/faq/linux-show-the-status-of-modules-driver-lsmod-command/'>lsmod</a></td></tr><tr><td><a name="Documentation"></a><span title="DOC (Documentation) command category">Documentation</span></td><td><a title='Help command - Linux Bash Shell Scripting Tutorial Wiki' href='https://bash.cyberciti.biz/guide/Help_command'>help</a> <span style="color: #828282;">&#8226;</span> <a title='Mandb command - Linux Bash Shell Scripting Tutorial Wiki' href='https://bash.cyberciti.biz/guide/Mandb_command'>mandb</a> <span style="color: #828282;">&#8226;</span> <a title='man command in Linux with Examples - Linux Shell Scripting Tutorial' href='https://bash.cyberciti.biz/guide/Man_command'>man</a> <span style="color: #828282;">&#8226;</span> <a title='pinfo - Read Linux Info Documentation in Colors' href='https://www.cyberciti.biz/open-source/command-line-hacks/linux-command-pinfo-for-colorful-info-pages/'>pinfo</a></td></tr><tr><td><a name="Disk_Management"></a><span title="DSM (Disk Management) command category">Disk Management</span></td><td><a title='How to use df command in Linux / Unix {with examples}' href='https://www.cyberciti.biz/faq/df-command-examples-in-linux-unix/'>df</a> <span style="color: #828282;">&#8226;</span> <a title='duf - Disk Usage/Free Utility for Linux, BSD, macOS &amp;amp; Windows' href='https://www.cyberciti.biz/open-source/command-line-hacks/duf-disk-usage-free-utility-for-linux-bsd-macos-windows/'>duf</a> <span style="color: #828282;">&#8226;</span> <a title='How to install ncdu on Linux / Unix to see disk usage' href='https://www.cyberciti.biz/open-source/install-ncdu-on-linux-unix-ncurses-disk-usage/'>ncdu</a> <span style="color: #828282;">&#8226;</span> <a title='pydf - Linux tool to see colourised filesystem disk space usage' href='https://www.cyberciti.biz/tips/unix-linux-bsd-pydf-command-in-colours.html'>pydf</a></td></tr><tr><td><a name="File_Management"></a><span title="FS (File Management) command category">File Management</span></td><td><a title='cat Command in Linux / Unix with examples' href='https://www.cyberciti.biz/faq/linux-unix-appleosx-bsd-cat-command-examples/'>cat</a> <span style="color: #828282;">&#8226;</span> <a title='Linux Copy File Command [ cp Command Examples ]' href='https://www.cyberciti.biz/faq/copy-command/'>cp</a> <span style="color: #828282;">&#8226;</span> <a title='Less command - Linux Bash Shell Scripting Tutorial Wiki' href='https://bash.cyberciti.biz/guide/Less_command'>less</a> <span style="color: #828282;">&#8226;</span> <a title='Linux: How to Make a Directory Command' href='https://www.cyberciti.biz/faq/linux-make-directory-command/'>mkdir</a> <span style="color: #828282;">&#8226;</span> <a title='More command - Linux Bash Shell Scripting Tutorial Wiki' href='https://bash.cyberciti.biz/guide/More_command'>more</a> <span style="color: #828282;">&#8226;</span> <a title='Linux see directory tree structure using tree command' href='https://www.cyberciti.biz/faq/linux-show-directory-structure-command-line/'>tree</a></td></tr><tr><td><a name="Firewall"></a><span title="FW (Firewall) command category">Firewall</span></td><td><a title='How To Set Up a Firewall with Awall on Alpine Linux' href='https://www.cyberciti.biz/faq/how-to-set-up-a-firewall-with-awall-on-alpine-linux/'>Alpine Awall</a> <span style="color: #828282;">&#8226;</span> <a title='How to set up a firewall using FirewallD on CentOS 8' href='https://www.cyberciti.biz/faq/how-to-set-up-a-firewall-using-firewalld-on-centos-8/'>CentOS 8</a> <span style="color: #828282;">&#8226;</span> <a title='How to set up a firewall using FirewallD on OpenSUSE Linux' href='https://www.cyberciti.biz/faq/set-up-a-firewall-using-firewalld-on-opensuse-linux/'>OpenSUSE</a> <span style="color: #828282;">&#8226;</span> <a title='How to set up a firewall using FirewallD on RHEL 8' href='https://www.cyberciti.biz/faq/configure-set-up-a-firewall-using-firewalld-on-rhel-8/'>RHEL 8 </a> <span style="color: #828282;">&#8226;</span> <a title='How to set up a UFW firewall on Ubuntu 16.04 LTS server' href='https://www.cyberciti.biz/faq/howto-configure-setup-firewall-with-ufw-on-ubuntu-linux/'>Ubuntu 16.04</a> <span style="color: #828282;">&#8226;</span> <a title='How to setup a UFW firewall on Ubuntu 18.04 LTS server' href='https://www.cyberciti.biz/faq/how-to-setup-a-ufw-firewall-on-ubuntu-18-04-lts-server/'>Ubuntu 18.04</a> <span style="color: #828282;">&#8226;</span> <a title='How To Configure Firewall with UFW on Ubuntu 20.04 LTS' href='https://www.cyberciti.biz/faq/how-to-configure-firewall-with-ufw-on-ubuntu-20-04-lts/'>Ubuntu 20.04</a> <span style="color: #828282;">&#8226;</span> <a title='Ubuntu 22.04 Set Up UFW Firewall in 5 Minutes' href='https://www.cyberciti.biz/faq/ubuntu-22-04-lts-set-up-ufw-firewall-in-5-minutes/'>Ubuntu 24.04</a></td></tr><tr><td><a name="KVM_Virtualization"></a><span title="KVM (KVM Virtualization) command category">KVM Virtualization</span></td><td><a title='How to install KVM on CentOS 7 / RHEL 7 Headless Server' href='https://www.cyberciti.biz/faq/how-to-install-kvm-on-centos-7-rhel-7-headless-server/'>CentOS/RHEL 7</a> <span style="color: #828282;">&#8226;</span> <a title='How to install KVM on CentOS 8 Headless Server' href='https://www.cyberciti.biz/faq/how-to-install-kvm-on-centos-8-headless-server/'>CentOS/RHEL 8</a> <span style="color: #828282;">&#8226;</span> <a title='How to install KVM server on Debian 9/10 Headless Server' href='https://www.cyberciti.biz/faq/install-kvm-server-debian-linux-9-headless-server/'>Debian 9/10/11</a> <span style="color: #828282;">&#8226;</span> <a title='How to install KVM on Ubuntu 20.04 LTS Headless Server' href='https://www.cyberciti.biz/faq/how-to-install-kvm-on-ubuntu-20-04-lts-headless-server/'>Ubuntu 20.04</a></td></tr><tr><td><a name="Linux_Desktop_apps"></a><span title="LDA (Linux Desktop apps) command category">Linux Desktop apps</span></td><td><a title='Ubuntu Linux: Install Google Chrome Browser Command' href='https://www.cyberciti.biz/faq/how-to-install-google-chrome-in-ubuntu-linux-12-xx-13-xx/'>Chrome</a> <span style="color: #828282;">&#8226;</span> <a title='How to install Chromium browser on Ubuntu Linux' href='https://www.cyberciti.biz/faq/install-chromium-browser-on-ubuntu-linux/'>Chromium</a> <span style="color: #828282;">&#8226;</span> <a title='How to install GIMP 2.10 on Ubuntu or Debian Linux' href='https://www.cyberciti.biz/faq/how-to-install-gimp-on-ubuntu-debian-linux/'>GIMP</a> <span style="color: #828282;">&#8226;</span> <a title='How to install Skype application on Linux' href='https://www.cyberciti.biz/faq/how-to-install-skype-application-on-linux/'>Skype</a> <span style="color: #828282;">&#8226;</span> <a title='How to install Spotify on Linux' href='https://www.cyberciti.biz/faq/how-to-install-spotify-application-on-linux/'>Spotify</a> <span style="color: #828282;">&#8226;</span> <a title='How to install VLC 3 application (Vetinari) on Linux' href='https://www.cyberciti.biz/faq/how-to-install-vlc-3-application-vetinari-on-linux/'>VLC 3</a></td></tr><tr><td><a name="LXD"></a><span title="LXD (LXD) command category">LXD</span></td><td><a title='How to backup and restore LXD containers' href='https://www.cyberciti.biz/faq/how-to-backup-and-restore-lxd-containers/'>Backups</a> <span style="color: #828282;">&#8226;</span> <a title='How to Set Up and Use LXD on CentOS 8.x / RHEL 8.x' href='https://www.cyberciti.biz/faq/set-up-use-lxd-on-centos-rhel-8-x/'>CentOS/RHEL</a> <span style="color: #828282;">&#8226;</span> <a title='How To Install LXD on Debian 11 Linux' href='https://www.cyberciti.biz/faq/how-to-install-lxd-on-debian-11-linux/'>Debian 11</a> <span style="color: #828282;">&#8226;</span> <a title='How to install and set up LXD on Fedora Linux server' href='https://www.cyberciti.biz/faq/how-to-install-setup-lxd-on-fedora-linux/'>Fedora</a> <span style="color: #828282;">&#8226;</span> <a title='How to add or mount directory in LXD (Linux container)' href='https://www.cyberciti.biz/faq/how-to-add-or-mount-directory-in-lxd-linux-container/'>Mount dir</a> <span style="color: #828282;">&#8226;</span> <a title='How To Install LXD on Ubuntu 20.04 LTS using apt' href='https://www.cyberciti.biz/faq/install-lxd-on-ubuntu-20-04-lts-using-apt/'>Ubuntu 20.04</a> <span style="color: #828282;">&#8226;</span> <a title='How To Install LXD on Ubuntu 22.04 LTS using apt/snap' href='https://www.cyberciti.biz/faq/install-lxd-on-ubuntu-22-04-lts-using-apt-snap/'>Ubuntu 22.04</a></td></tr><tr><td><a name="Modern_utilities"></a><span title="MD (Modern utilities) command category">Modern utilities</span></td><td><a title='bat Linux command - A cat clone with written in Rust' href='https://www.cyberciti.biz/open-source/bat-linux-command-a-cat-clone-with-written-in-rust/'>bat</a> <span style="color: #828282;">&#8226;</span> <a title='exa a modern replacement for ls command in rust for Linux/Unix' href='https://www.cyberciti.biz/open-source/command-line-hacks/exa-a-modern-replacement-for-ls-written-in-rust-for-linuxunix/'>exa</a></td></tr><tr><td><a name="Network_Management"></a><span title="NETM (Network Management) command category">Network Management</span></td><td><a title='30 Linux System Monitoring Tools Every SysAdmin Should Know' href='https://www.cyberciti.biz/tips/top-linux-monitoring-tools.html'>Monitoring tools</a> <span style="color: #828282;">&#8226;</span> <a title='Unix HowTo: Start / Stop / Restart Network Service Command' href='https://www.cyberciti.biz/faq/unix-network-service-restart-stop/'>Network services</a> <span style="color: #828282;">&#8226;</span> <a title='How to configure a static IP address on RHEL 8' href='https://www.cyberciti.biz/faq/how-to-configure-a-static-ip-address-on-rhel-8/'>RHEL static IP</a> <span style="color: #828282;">&#8226;</span> <a title='How to Restart Network Interface in Linux' href='https://www.cyberciti.biz/faq/linux-restart-network-interface/'>Restart network interface</a> <span style="color: #828282;">&#8226;</span> <a title='How to add network bridge with nmcli (NetworkManager) on Linux' href='https://www.cyberciti.biz/faq/how-to-add-network-bridge-with-nmcli-networkmanager-on-linux/'>nmcli</a></td></tr><tr><td><a name="Network_Utilities"></a><span title="NU (Network Utilities) command category">Network Utilities</span></td><td><a title='Linux See Bandwidth Usage Per Process With Nethogs Tool' href='https://www.cyberciti.biz/faq/linux-find-out-what-process-is-using-bandwidth/'>NetHogs</a> <span style="color: #828282;">&#8226;</span> <a title='Linux and Unix dig Command Examples' href='https://www.cyberciti.biz/faq/linux-unix-dig-command-examples-usage-syntax/'>dig</a> <span style="color: #828282;">&#8226;</span> <a title='Linux and Unix host Command Examples' href='https://www.cyberciti.biz/faq/linux-unix-host-command-examples-usage-syntax/'>host</a> <span style="color: #828282;">&#8226;</span> <a title='Linux ip Command Examples' href='https://www.cyberciti.biz/faq/linux-ip-command-examples-usage-syntax/'>ip</a> <span style="color: #828282;">&#8226;</span> <a title='Nmap Command Examples For Linux Users / Admins' href='https://www.cyberciti.biz/security/nmap-command-examples-tutorials/'>nmap</a> <span style="color: #828282;">&#8226;</span> <a title='UNIX ping Command Examples' href='https://www.cyberciti.biz/faq/unix-ping-command-examples/'>ping</a></td></tr><tr><td><a name="OpenVPN"></a><span title="OVPN (OpenVPN) command category">OpenVPN</span></td><td><a title='CentOS 7 Set Up OpenVPN Server In 5 Minutes' href='https://www.cyberciti.biz/faq/centos-7-0-set-up-openvpn-server-in-5-minutes/'>CentOS 7</a> <span style="color: #828282;">&#8226;</span> <a title='CentOS 8 Set Up OpenVPN Server In 5 Minutes' href='https://www.cyberciti.biz/faq/centos-8-set-up-openvpn-server-in-5-minutes/'>CentOS 8</a> <span style="color: #828282;">&#8226;</span> <a title='Debian 10 Set Up OpenVPN Server In 5 Minutes' href='https://www.cyberciti.biz/faq/debian-10-set-up-openvpn-server-in-5-minutes/'>Debian 10</a> <span style="color: #828282;">&#8226;</span> <a title='Debian 11 Set Up OpenVPN Server In 5 Minutes' href='https://www.cyberciti.biz/faq/debian-11-set-up-openvpn-server-in-5-minutes/'>Debian 11</a> <span style="color: #828282;">&#8226;</span> <a title='Install and Configure an OpenVPN on Debian 9 In 5 Minutes' href='https://www.cyberciti.biz/faq/install-configure-openvpn-server-on-debian-9-linux/'>Debian 8/9</a> <span style="color: #828282;">&#8226;</span> <a title='Ubuntu 18.04 LTS Set Up OpenVPN Server In 5 Minutes' href='https://www.cyberciti.biz/faq/ubuntu-18-04-lts-set-up-openvpn-server-in-5-minutes/'>Ubuntu 18.04</a> <span style="color: #828282;">&#8226;</span> <a title='Ubuntu 22.04 LTS Set Up OpenVPN Server In 5 Minutes' href='https://www.cyberciti.biz/faq/ubuntu-22-04-lts-set-up-openvpn-server-in-5-minutes/'>Ubuntu 20.04</a></td></tr><tr><td><a name="Power_Management"></a><span title="PMG (Power Management) command category">Power Management</span></td><td><a title='upower command in Linux with examples' href='https://www.cyberciti.biz/faq/linux-upower-command-examples-and-syntax/'>upower</a></td></tr><tr><td><a name="Package_Manager"></a><span title="PM (Package Manager) command category">Package Manager</span></td><td><a title='10 Alpine Linux apk Command Examples' href='https://www.cyberciti.biz/faq/10-alpine-linux-apk-command-examples/'>apk</a> <span style="color: #828282;">&#8226;</span> <a title='Ubuntu/Debian Linux apt-get package management cheat sheet' href='https://www.cyberciti.biz/tips/linux-debian-package-management-cheat-sheet.html'>apt-get</a> <span style="color: #828282;">&#8226;</span> <a title='apt Command Examples for Ubuntu/Debian Linux' href='https://www.cyberciti.biz/faq/ubuntu-lts-debian-linux-apt-command-examples/'>apt</a> <span style="color: #828282;">&#8226;</span> <a title='How to use yum command on CentOS/RHEL' href='https://www.cyberciti.biz/faq/rhel-centos-fedora-linux-yum-command-howto/'>yum</a></td></tr><tr><td><a name="Processes_Management"></a><span title="PRM (Processes Management) command category">Processes Management</span></td><td><a title='Linux / Unix: bg Command Examples' href='https://www.cyberciti.biz/faq/unix-linux-bg-command-examples-usage-syntax/'>bg</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix: chroot Command Examples' href='https://www.cyberciti.biz/faq/unix-linux-chroot-command-examples-usage-syntax/'>chroot</a> <span style="color: #828282;">&#8226;</span> <a title='How To Add Jobs To cron Under Linux or UNIX' href='https://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/'>cron</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix: disown Command Examples' href='https://www.cyberciti.biz/faq/unix-linux-disown-command-examples-usage-syntax/'>disown</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix: fg Command Examples' href='https://www.cyberciti.biz/faq/unix-linux-fg-command-examples-usage-syntax/'>fg</a> <span style="color: #828282;">&#8226;</span> <a title='Linux: Keep An Eye On Your System With Glances Monitor' href='https://www.cyberciti.biz/faq/linux-install-glances-monitoring-tool/'>glances</a> <span style="color: #828282;">&#8226;</span> <a title='gtop: Awesome system monitoring dashboard for Linux/macOS Unix terminal' href='https://www.cyberciti.biz/howto/gtop-awesome-system-monitoring-dashboard-for-terminal/'>gtop</a> <span style="color: #828282;">&#8226;</span> <a title='Linux iotop Check What&#039;#039;s Stressing &amp;amp; Increasing Load On Hard Disks' href='https://www.cyberciti.biz/hardware/linux-iotop-simple-top-like-io-monitor/'>iotop</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix: jobs Command Examples' href='https://www.cyberciti.biz/faq/unix-linux-jobs-command-examples-usage-syntax/'>jobs</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix: killall Command Examples' href='https://www.cyberciti.biz/faq/unix-linux-killall-command-examples-usage-syntax/'>killall</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / UNIX: Kill Command Examples' href='https://www.cyberciti.biz/faq/unix-kill-command-examples/'>kill</a> <span style="color: #828282;">&#8226;</span> <a title='Linux pidof Command Examples To Find PID of A Program/Command' href='https://www.cyberciti.biz/faq/linux-pidof-command-examples-find-pid-of-program/'>pidof</a> <span style="color: #828282;">&#8226;</span> <a title='Linux/Unix: pstree Command Examples: See A Tree Of Processes' href='https://www.cyberciti.biz/faq/unix-linux-pstree-command-examples-shows-running-processestree/'>pstree</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix: pwdx Command Examples' href='https://www.cyberciti.biz/faq/unix-linux-pwdx-command-examples-usage-syntax/'>pwdx</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix: time Command Examples' href='https://www.cyberciti.biz/faq/unix-linux-time-command-examples-usage-syntax/'>time</a> <span style="color: #828282;">&#8226;</span> <a title='How to install and use vtop graphical terminal monitor on Linux' href='https://www.cyberciti.biz/faq/how-to-install-and-use-vtop-graphical-terminal-activity-monitor-on-linux/'>vtop</a></td></tr><tr><td><a name="Searching"></a><span title="SER (Searching) command category">Searching</span></td><td><a title='ag - supercharge string search through a directory on a Linux' href='https://www.cyberciti.biz/open-source/command-line-hacks/ag-supercharge-string-search-through-directory-hierarchy/'>ag</a> <span style="color: #828282;">&#8226;</span> <a title='Regular expressions in grep ( regex ) with examples' href='https://www.cyberciti.biz/faq/grep-regular-expressions/'>egrep</a> <span style="color: #828282;">&#8226;</span> <a title='How to use grep command in Linux/ Unix with examples' href='https://www.cyberciti.biz/faq/howto-use-grep-command-in-linux-unix/'>grep</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix whereis Command Examples' href='https://www.cyberciti.biz/faq/unix-linux-whereis-command-examples-to-locate-binary/'>whereis</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix which Command Examples To Locate a Command' href='https://www.cyberciti.biz/faq/unix-linux-which-command-examples-syntax-to-locate-programs/'>which</a></td></tr><tr><td><a name="Shell_builtins"></a><span title="SHB (Shell builtins) command category">Shell builtins</span></td><td><a title='compgen: An Awesome Command To List All Linux Commands' href='https://www.cyberciti.biz/open-source/command-line-hacks/compgen-linux-command/'>compgen</a> <span style="color: #828282;">&#8226;</span> <a title='Echo Command - Linux Bash Shell Scripting Tutorial Wiki' href='https://bash.cyberciti.biz/guide/Echo_Command'>echo</a> <span style="color: #828282;">&#8226;</span> <a title='Printf command - Linux Bash Shell Scripting Tutorial Wiki' href='https://bash.cyberciti.biz/guide/Printf_command'>printf</a></td></tr><tr><td><a name="System_Management"></a><span title="SM (System Management) command category">System Management</span></td><td><a title='Reboot Linux System Command' href='https://www.cyberciti.biz/faq/howto-reboot-linux/'>reboot</a> <span style="color: #828282;">&#8226;</span> <a title='How To Shutdown Linux Using Command Line' href='https://www.cyberciti.biz/faq/howto-shutdown-linux/'>shutdown</a></td></tr><tr><td><a name="Terminal/ssh"></a><span title="SSH (Terminal/ssh) command category">Terminal/ssh</span></td><td><a title='sshpass - Login to ssh server with a password using a shell script' href='https://www.cyberciti.biz/faq/noninteractive-shell-script-ssh-password-provider/'>sshpass</a> <span style="color: #828282;">&#8226;</span> <a title='Find Out What tty I&#039;#039;m Using tty command under Linux / Unix' href='https://www.cyberciti.biz/faq/linux-unix-appleosx-bsd-what-tty-command/'>tty</a></td></tr><tr><td><a name="Text_processing"></a><span title="TP (Text processing) command category">Text processing</span></td><td><a title='Cut command - Linux Bash Shell Scripting Tutorial Wiki' href='https://bash.cyberciti.biz/guide/Cut_command'>cut</a> <span style="color: #828282;">&#8226;</span> <a title='Rev command - Linux Bash Shell Scripting Tutorial Wiki' href='https://bash.cyberciti.biz/guide/Rev_command'>rev</a></td></tr><tr><td><a name="Text_Editor"></a><span title="TXTE (Text Editor) command category">Text Editor</span></td><td><a title='6 awesome text editors for Linux, macOS, and BSD CLI users' href='https://www.cyberciti.biz/open-source/awesome-text-editors-for-linux-and-unix-command-line-users-developers/'>6 Text editors</a> <span style="color: #828282;">&#8226;</span> <a title='How To: Vi / Vim Save And Quit The Editor Command' href='https://www.cyberciti.biz/faq/linux-unix-vim-save-and-quit-command/'>Save and exit vim</a></td></tr><tr><td><a name="User_Environment"></a><span title="UE (User Environment) command category">User Environment</span></td><td><a title='Exit command - Linux Bash Shell Scripting Tutorial Wiki' href='https://bash.cyberciti.biz/guide/Exit_command'>exit</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix who Command Examples To List Users on The Systems' href='https://www.cyberciti.biz/faq/unix-linux-who-command-examples-syntax-usage/'>who</a></td></tr><tr><td><a name="User_Information"></a><span title="UI (User Information) command category">User Information</span></td><td><a title='Linux / Unix: groups Command Examples' href='https://www.cyberciti.biz/faq/unix-linux-groups-command-examples-syntax-usage/'>groups</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix id Command Examples' href='https://www.cyberciti.biz/faq/unix-linux-id-command-examples-usage-syntax/'>id</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix: lastcomm Command Examples' href='https://www.cyberciti.biz/faq/linux-unix-lastcomm-command-examples-usage-syntax/'>lastcomm</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix last Command Examples' href='https://www.cyberciti.biz/faq/linux-unix-last-command-examples/'>last</a> <span style="color: #828282;">&#8226;</span> <a title='Linux lid (libuser-lid) Command Examples' href='https://www.cyberciti.biz/faq/linux-lid-command-examples-syntax-usage/'>lid/libuser-lid</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix: logname Command Examples To Display Loginname' href='https://www.cyberciti.biz/faq/unix-linux-logname-command-examples-syntax-usage/'>logname</a> <span style="color: #828282;">&#8226;</span> <a title='Linux members Command Examples' href='https://www.cyberciti.biz/faq/linux-members-command-examples-usage-syntax/'>members</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix: users Command Examples' href='https://www.cyberciti.biz/faq/unix-linux-users-command-examples-syntax-usage/'>users</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix: whoami Command Examples' href='https://www.cyberciti.biz/faq/unix-linux-whoami-command-examples-syntax-usage/'>whoami</a> <span style="color: #828282;">&#8226;</span> <a title='Linux / Unix: w Command Examples' href='https://www.cyberciti.biz/faq/unix-linux-w-command-examples-syntax-usage-2/'>w</a></td></tr><tr><td><a name="User_Management"></a><span title="USM (User Management) command category">User Management</span></td><td><a title='Understanding /etc/group File' href='https://www.cyberciti.biz/faq/understanding-etcgroup-file/'>/etc/group</a> <span style="color: #828282;">&#8226;</span> <a title='Understanding /etc/passwd File Format' href='https://www.cyberciti.biz/faq/understanding-etcpasswd-file-format/'>/etc/passwd</a> <span style="color: #828282;">&#8226;</span> <a title='Understanding /etc/shadow file format on Linux' href='https://www.cyberciti.biz/faq/understanding-etcshadow-file/'>/etc/shadow</a> <span style="color: #828282;">&#8226;</span> <a title='chsh command in Linux and Unix - Linux Bash Shell Scripting Tutorial Wiki' href='https://bash.cyberciti.biz/guide/Chsh_command'>chsh</a></td></tr><tr><td><a name="Web_Server"></a><span title="WEBS (Web Server) command category">Web Server</span></td><td><a title='Apache related tutorial/FAQ' href='https://www.cyberciti.biz/faq/category/apache/'>Apache</a> <span style="color: #828282;">&#8226;</span> <a title='Let&#039;#039;s Encrypt certificate How To - Linux / Unix Q &amp;amp; A from nixCraft' href='https://www.cyberciti.biz/faq/tag/lets-encrypt-certificate/'>Let's Encrypt certificate</a> <span style="color: #828282;">&#8226;</span> <a title='Lighttpd Linux/Unix tips from nixCraft' href='https://www.cyberciti.biz/tips/category/lighttpd'>Lighttpd</a> <span style="color: #828282;">&#8226;</span> <a title='Top 25 Nginx Web Server Best Security Practices' href='https://www.cyberciti.biz/tips/linux-unix-bsd-nginx-webserver-security.html'>Nginx Security</a> <span style="color: #828282;">&#8226;</span> <a title='Nginx related tutorial/FAQ' href='https://www.cyberciti.biz/faq/category/nginx/'>Nginx</a></td></tr><tr><td><a name="WireGuard_VPN"></a><span title="WG (WireGuard VPN) command category">WireGuard VPN</span></td><td><a title='Alpine Linux set up WireGuard VPN server' href='https://www.cyberciti.biz/faq/how-to-set-up-wireguard-vpn-server-on-alpine-linux/'>Alpine</a> <span style="color: #828282;">&#8226;</span> <a title='How to Set Up WireGuard VPN on Amazon Linux 2' href='https://www.cyberciti.biz/faq/install-set-up-wireguard-on-amazon-linux-2/'>Amazon Linux</a> <span style="color: #828282;">&#8226;</span> <a title='CentOS 8 set up WireGuard VPN server' href='https://www.cyberciti.biz/faq/centos-8-set-up-wireguard-vpn-server/'>CentOS 8</a> <span style="color: #828282;">&#8226;</span> <a title='Debian 10 set up WireGuard VPN server' href='https://www.cyberciti.biz/faq/debian-10-set-up-wireguard-vpn-server/'>Debian 10</a> <span style="color: #828282;">&#8226;</span> <a title='How To Set Up WireGuard Firewall Rules in Linux' href='https://www.cyberciti.biz/faq/how-to-set-up-wireguard-firewall-rules-in-linux/'>Firewall</a> <span style="color: #828282;">&#8226;</span> <a title='How to set up WireGuard VPN server on Ubuntu 20.04' href='https://www.cyberciti.biz/faq/ubuntu-20-04-set-up-wireguard-vpn-server/'>Ubuntu 20.04</a> <span style="color: #828282;">&#8226;</span> <a title='How to generate WireGuard QR code on Linux for mobile' href='https://www.cyberciti.biz/faq/how-to-generate-wireguard-qr-code-on-linux-for-mobile/'>qrencode</a></td></tr></tbody></table> <div id="comments" class="text">
+<div class="comments_intro"><span class="num_comments">3</span> comments&#8230; <a href="#respond" rel="nofollow">add one</a></div>
+<ul class="comment_list">
+<li class="comment even thread-even depth-1" id="comment-933259">
+<div class="comment_header">
+<span class="comment_author">Trisha</span>
+<span class="comment_date">Jan 10, 2021 @ 20:48</span>
+</div>
+<div class="comment_text" id="comment-body-933259">
+<p>In Linux, how do you remove a directory? To delete a folder that is not empty, use the <kbd>rm -r</kbd> command for recursive deletion. Be very careful with this command, because using the <kbd>rm -r</kbd> command will delete not only everything in the named folder (directory), but also everything in its folders. If you don&#8217;t use this command very carefully, you risk deleting all of your files. Never run the following:<br />
+<code>sudo rm -rf /<br />
+sudo rm -rf /etc/</code></p>
+</div>
+<div class="comment_footer">
+<a rel='nofollow' class='comment-reply-link' href='#comment-933259' data-commentid="933259" data-postid="146679" data-belowelement="comment-body-933259" data-respondelement="respond" data-replyto="Reply to Trisha" aria-label='Reply to Trisha'>Reply</a>
+<a class="comment_permalink" href="#comment-933259" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li>
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-933651">
+<div class="comment_header">
+<span class="comment_author">Stealla</span>
+<span class="comment_date">Mar 2, 2021 @ 9:27</span>
+</div>
+<div class="comment_text" id="comment-body-933651">
+<p>I wanted to how to remove non empty directory in macOS on my development system. you helped me a lot. so this message is confirmation that commands works on macOS unix system too.</p>
+</div>
+<div class="comment_footer">
+<a rel='nofollow' class='comment-reply-link' href='#comment-933651' data-commentid="933651" data-postid="146679" data-belowelement="comment-body-933651" data-respondelement="respond" data-replyto="Reply to Stealla" aria-label='Reply to Stealla'>Reply</a>
+<a class="comment_permalink" href="#comment-933651" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li>
+<li class="comment even thread-even depth-1" id="comment-942875">
+<div class="comment_header">
+<span class="comment_author">Anonymous</span>
+<span class="comment_date">Jul 30, 2022 @ 11:53</span>
+</div>
+<div class="comment_text" id="comment-body-942875">
+<p>Tnx yaar</p>
+</div>
+<div class="comment_footer">
+<a rel='nofollow' class='comment-reply-link' href='#comment-942875' data-commentid="942875" data-postid="146679" data-belowelement="comment-body-942875" data-respondelement="respond" data-replyto="Reply to Anonymous" aria-label='Reply to Anonymous'>Reply</a>
+<a class="comment_permalink" href="#comment-942875" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li>
+</ul>
+<div id="respond" class="comment-respond">
+<p class="comment-reply-title">Leave a Reply<a rel="nofollow" id="cancel-comment-reply-link" href="/faq/how-to-remove-non-empty-directory-in-linux/#respond" style="display:none;">Cancel reply</a></p><form action="https://www.cyberciti.biz/faq/wp-comments-post.php" method="post" id="commentform" class="comment-form"><p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> <span class="required-field-message">Required fields are marked <span class="required">*</span></span></p><p class="comment-form-comment"><label for="comment">Comment <span class="required">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name</label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" autocomplete="name" /></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='146679' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="7528eb684a" /></p><p style="display: none !important;"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="140" /><script type="rocketlazyloadscript">document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p></form> </div>
+<div style="font-size: 0.85em;">
+<span class="highlight">Use <acronym title="HyperText Markup Language">HTML</acronym> &lt;pre&gt;...&lt;/pre&gt; for code samples. Your comment will appear only after approval by the site admin.</span>
+</div>
+</div>
+<div class="prev_next text">
+<p class="next_post">Next FAQ: <a href="https://www.cyberciti.biz/faq/how-to-find-and-replace-textip-address-with-ansible/" rel="next">How to find and replace text/IP address with Ansible</a></p>
+<p class="previous_post">Previous FAQ: <a href="https://www.cyberciti.biz/faq/how-to-delete-and-remove-files-on-arch-linux/" rel="prev">How to delete and remove files on Arch Linux</a></p>
+</div>
+</div>
+<div class="sidebar">
+<div class="social-profiles">
+<a class="icon-social" href="mailto:webmaster@cyberciti.biz">&#xf0e0;</a>
+<a class="icon-social" href="https://facebook.com/nixcraft">&#xf230;</a>
+<a class="icon-social" href="https://www.patreon.com/nixcraft">&#xe900;</a>
+<a class="icon-social" href="https://www.reddit.com/user/nixcraft/">&#xf281;</a>
+<a class="icon-social" href="https://twitter.com/nixcraft">&#xf099;</a>
+<a class="icon-social" href="https://www.youtube.com/@nixcraft">&#xf167;</a>
+</div>
+<div class="widget_text widget widget_custom_html" id="custom_html-13"><div class="textwidget custom-html-widget"><script type="rocketlazyloadscript" async data-rocket-src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7825705102693166" crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7825705102693166" data-ad-slot="3587683882" data-ad-format="auto"></ins>
+<script type="rocketlazyloadscript">
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div><div class="widget_text widget widget_custom_html" id="custom_html-12"><div class="textwidget custom-html-widget"><center>
+<div style="text-transform: uppercase; color: rgb(204, 204, 204);">Search</div><br>
+<form method="GET" class="search-form" action="https://www.google.com/cse" target="_top"> <div class="search-form-inner"> <input name="cx" type="hidden" value="c8e444503670f107a" /> <input name="ie" type="hidden" value="UTF-8" /> <input class="nixcraftsearchbox" type="search" placeholder="🔎 To search, type & hit enter..." name="q" required> </div> </form>
+</center></div></div><div class="widget_text widget widget_custom_html" id="custom_html-14"><div class="textwidget custom-html-widget"><script type="rocketlazyloadscript" async data-rocket-src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7825705102693166" crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7825705102693166" data-ad-slot="9961520545" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script type="rocketlazyloadscript">
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div><div class="widget_text widget widget_custom_html" id="custom_html-2"><h3 class="widget_title">FEATURED ARTICLES</h3><div class="textwidget custom-html-widget"><style>.topnum {
+    color: #ccc;
+    font-size: 40px;
+    float: left;
+    margin-top: -1px;
+    width: 15%;
+}
+</style>
+<div class="wp_rp_wrap">
+<div class="wp_rp_content">
+<ul class="related_post">
+<li><div class="topnum">1</div><a href="https://www.cyberciti.biz/open-source/30-cool-best-open-source-softwares-of-2013/">30 Cool Open Source Software I Discovered in 2013</a></li>
+<li><div class="topnum">2</div><a href="https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html">30 Handy Bash Shell Aliases For Linux / Unix / Mac OS X</a></li>
+<li><div class="topnum">3</div><a href="https://www.cyberciti.biz/networking/nmap-command-examples-tutorials/">Top 32 Nmap Command Examples For Linux Sys/Network Admins</a></li>
+<li><div class="topnum">4</div><a href="https://www.cyberciti.biz/tips/php-security-best-practices-tutorial.html">25 PHP Security Best Practices For Linux Sys Admins</a></li>
+<li><div class="topnum">5</div><a href="https://www.cyberciti.biz/tips/top-linux-monitoring-tools.html">30 Linux System Monitoring Tools Every SysAdmin Should Know</a></li>
+<li><div class="topnum">6</div><a href="https://www.cyberciti.biz/tips/linux-security.html">40 Linux Server Hardening Security Tips</a></li>
+<li><div class="topnum">7</div><a href="https://www.cyberciti.biz/tips/linux-iptables-examples.html">Linux: 25 Iptables Netfilter Firewall Examples For New SysAdmins</a></li>
+<li><div class="topnum">8</div><a href="https://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html">Top 20 OpenSSH Server Best Security Practices </a></li>
+<li><div class="topnum">9</div><a href="https://www.cyberciti.biz/tips/linux-unix-bsd-nginx-webserver-security.html">Top 25 Nginx Web Server Best Security Practices</a></li>
+<li><div class="topnum">10</div><a href="https://www.cyberciti.biz/tips/my-10-unix-command-line-mistakes.html">My 10 UNIX Command Line Mistakes</a></li>
+</ul>
+</div>
+</div></div></div><div class="widget_text widget widget_custom_html" id="custom_html-15"><div class="textwidget custom-html-widget"><script type="rocketlazyloadscript" async data-rocket-src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7825705102693166" crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7825705102693166" data-ad-slot="1540003379" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script type="rocketlazyloadscript">
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div><div class="widget_text widget widget_custom_html" id="custom_html-19"><div class="textwidget custom-html-widget"><center><div style="text-transform: uppercase; font-weight: bold; color: #ccc;">Sign up for my newsletter</div>
+<a href="https://newsletter.cyberciti.biz/subscription?f=1ojtmiv8892KQzyMsTF4YPr1pPSAhX2rq7Qfe5DiHMgXwKo892di4MTWyOdd976343rcNR6LhdG1f7k9H8929kMNMdWu3g"><img title="Email Subscription" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20141'%3E%3C/svg%3E" alt="Sign up for my newsletter" width="300" height="141" data-lazy-src="https://www.cyberciti.biz/media/new/cms/2021/01/inbox-sign-up.002.jpeg" /><noscript><img title="Email Subscription" src="https://www.cyberciti.biz/media/new/cms/2021/01/inbox-sign-up.002.jpeg" alt="Sign up for my newsletter" width="300" height="141" /></noscript></a></center></div></div><div class="widget_text widget widget_custom_html" id="custom_html-18"><div class="textwidget custom-html-widget"><style>.morenum {
+    color: #ccc;
+    font-size: 40px;
+    float: left;
+    width: 15%;
+}
+ul.cbz_site_links li{
+	position: relative;
+	list-style: none;
+	padding: 10px 0 10px 0;
+	margin: 0;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+	background: none;
+}
+ul.cbz_site_links {
+    margin: 0 0 18px 0;
+    padding: 0;
+}
+</style>
+<ul class="cbz_site_links">
+<li><div class="morenum">➔</div><a title="Linux Shell Scripting Tutorial Wiki" href="https://bash.cyberciti.biz/guide/Main_Page">Linux shell scripting tutorial</a></li>
+<li><div class="morenum">➔</div><a href="https://www.cyberciti.com/atom/atom.xml" title="Get updates using RSS feed">RSS/Feed</a></li>
+<li><div class="morenum">➔</div><a href="https://www.cyberciti.biz/tips/about-us" title="About nixCraft">About nixCraft</a></li>
+</ul></div></div><div class="social-profiles">
+<a class="icon-social" href="mailto:webmaster@cyberciti.biz">&#xf0e0;</a>
+<a class="icon-social" href="https://facebook.com/nixcraft">&#xf230;</a>
+<a class="icon-social" href="https://www.patreon.com/nixcraft">&#xe900;</a>
+<a class="icon-social" href="https://www.reddit.com/user/nixcraft/">&#xf281;</a>
+<a class="icon-social" href="https://twitter.com/nixcraft">&#xf099;</a>
+<a class="icon-social" href="https://www.youtube.com/@nixcraft">&#xf167;</a>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div class="container">
+<center> <div class="text_box">
+©2002-2023 nixCraft • <a href="https://www.cyberciti.biz/tips/privacy" title="Privacy policy">Privacy</a> • <a href="https://www.cyberciti.biz/tips/disclaimer" title="Term of Service">ToS</a> • <a href="https://www.cyberciti.biz/tips/contact-us" title="Contact us via Email">Contact/Email</a> • Corporate patron <a href="https://www.cyberciti.biz/tips/nixcraft-sponsors" title="Corporate patron">Linode &#038; Cloudflare</a>
+</div>
+<div class="social-profiles">
+<a class="icon-social" href="mailto:webmaster@cyberciti.biz">&#xf0e0;</a>
+<a class="icon-social" href="https://facebook.com/nixcraft">&#xf230;</a>
+<a class="icon-social" href="https://www.patreon.com/nixcraft">&#xe900;</a>
+<a class="icon-social" href="https://www.reddit.com/user/nixcraft/">&#xf281;</a>
+<a class="icon-social" href="https://twitter.com/nixcraft">&#xf099;</a>
+<a class="icon-social" href="https://www.youtube.com/@nixcraft">&#xf167;</a>
+</div>
+</div>
+</center></div>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.cyberciti.biz/faq/wp-includes/js/comment-reply.min.js?ver=6.2' id='comment-reply-js' defer></script>
+<script type="rocketlazyloadscript" defer data-rocket-type='text/javascript' data-rocket-src='https://www.cyberciti.biz/faq/wp-content/plugins/akismet/_inc/akismet-frontend.js?ver=1679364880' id='akismet-frontend-js'></script>
+<script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://www.cyberciti.biz/faq/wp-content/plugins/wp-rocket/assets/js/lazyload/17.8.3/lazyload.min.js"></script><script>function lazyLoadThumb(e){var t='<img data-lazy-src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"><noscript><img src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"></noscript>',a='<button class="play" aria-label="play Youtube video"></button>';return t.replace("ID",e)+a}function lazyLoadYoutubeIframe(){var e=document.createElement("iframe"),t="ID?autoplay=1";t+=0===this.parentNode.dataset.query.length?'':'&'+this.parentNode.dataset.query;e.setAttribute("src",t.replace("ID",this.parentNode.dataset.src)),e.setAttribute("frameborder","0"),e.setAttribute("allowfullscreen","1"),e.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"),this.parentNode.parentNode.replaceChild(e,this.parentNode)}document.addEventListener("DOMContentLoaded",function(){var e,t,p,a=document.getElementsByClassName("rll-youtube-player");for(t=0;t<a.length;t++)e=document.createElement("div"),e.setAttribute("data-id",a[t].dataset.id),e.setAttribute("data-query", a[t].dataset.query),e.setAttribute("data-src", a[t].dataset.src),e.innerHTML=lazyLoadThumb(a[t].dataset.id),a[t].appendChild(e),p=e.querySelector('.play'),p.onclick=lazyLoadYoutubeIframe});</script>
+<script type="rocketlazyloadscript" async data-rocket-src="https://www.googletagmanager.com/gtag/js?id=G-8G0BR7WCTH"></script>
+<script type="rocketlazyloadscript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8G0BR7WCTH');
+</script>
+<script>"use strict";function wprRemoveCPCSS(){var preload_stylesheets=document.querySelectorAll('link[data-rocket-async="style"][rel="preload"]');if(preload_stylesheets&&0<preload_stylesheets.length)for(var stylesheet_index=0;stylesheet_index<preload_stylesheets.length;stylesheet_index++){var media=preload_stylesheets[stylesheet_index].getAttribute("media")||"all";if(window.matchMedia(media).matches)return void setTimeout(wprRemoveCPCSS,200)}var elem=document.getElementById("rocket-critical-css");elem&&"remove"in elem&&elem.remove()}window.addEventListener?window.addEventListener("load",wprRemoveCPCSS):window.attachEvent&&window.attachEvent("onload",wprRemoveCPCSS);</script><noscript><link data-minify="1" href="https://www.cyberciti.biz/faq/wp-content/cache/min/1/faq/wp-content/thesis/boxes/thesis-social-profiles/icons.css?ver=1680684667" rel="stylesheet" /><link data-minify="1" href="https://www.cyberciti.biz/faq/wp-content/cache/min/1/faq/wp-content/thesis/skins/focus/css.css?ver=1680684667" rel="stylesheet" /></noscript></body>
+</html>
