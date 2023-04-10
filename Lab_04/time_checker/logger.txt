@@ -1,0 +1,3 @@
+ docker run -d --name logger -v ./time:/log log
+
+docker run -d --name logger -v ./time:/log log
