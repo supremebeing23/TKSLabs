@@ -1,10 +1,10 @@
 import time
 
-directory = '/log'
-filename = f"{directory}/log.txt"
+#directory = '~/log'
 
 
 while True:
-    with open("log.txt", "a") as f:
+    #filename = /log/log.txt'
+    with open("/log/log.txt", "a") as f:
         f.write(time.strftime("%Y-%m-%d %H:%M:%S") + "\n")
         time.sleep(10)

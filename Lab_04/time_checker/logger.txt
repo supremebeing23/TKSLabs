@@ -1,3 +1,69 @@
- docker run -d --name logger -v ./time:/log log
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker build -t log .
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker run -d --name logger -v ./time:/log log
 
-docker run -d --name logger -v ./time:/log log
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker volume ls
+DRIVER    VOLUME NAME
+local     time
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker ps
+CONTAINER ID   IMAGE     COMMAND                CREATED              STATUS              PORTS     NAMES
+e406c08a52a5   log       "python ./logger.py"   About a minute ago   Up About a minute             logger
+
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker exec -it logger bash
+
+root@e406c08a52a5:/# ls
+
+bin  boot  dev  etc  home  lib  lib64  log  logger.py  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@e406c08a52a5:/# cd log
+root@e406c08a52a5:/log# ls
+Dockerfile  log.txt  logger.py
+root@e406c08a52a5:/log# more log.txt
+2023-04-13 06:54:44
+2023-04-13 06:54:54
+2023-04-13 06:55:04
+2023-04-13 06:55:14
+2023-04-13 06:55:24
+2023-04-13 06:55:34
+2023-04-13 06:55:44
+2023-04-13 06:55:54
+2023-04-13 06:56:04
+2023-04-13 06:56:14
+root@e406c08a52a5:/log#
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker run -d --name logchecker --volumes-from logger logchecker
+
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker ps
+CONTAINER ID   IMAGE        COMMAND                 CREATED         STATUS          PORTS     NAMES
+e8e401e7f3ed   logchecker   "python ./logger2.py"   3 minutes ago   Up 3 minutes              logchecker
+e406c08a52a5   log          "python ./logger.py"    2 hours ago     Up 12 minutes             logger
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker volume ls
+DRIVER    VOLUME NAME
+local     time
+ being@DESKTOP-RCRJVRG:/mnt/c/Users/IT$ docker logs  logchecker
+Filename: /log/log.txt
+Content:
+ 2023-04-13 08:51:53
+2023-04-13 08:52:03
+2023-04-13 08:52:13
+2023-04-13 08:52:23
+2023-04-13 08:52:33
+2023-04-13 08:52:43
+
+Filename: /log/log.txt
+Content:
+ 2023-04-13 08:51:53
+2023-04-13 08:52:03
+2023-04-13 08:52:13
+2023-04-13 08:52:23
+2023-04-13 08:52:33
+2023-04-13 08:52:43
+
+Filename: /log/log.txt
+Content:
+ 2023-04-13 08:51:53
+2023-04-13 08:52:03
+2023-04-13 08:52:13
+2023-04-13 08:52:23
+2023-04-13 08:52:33
+2023-04-13 08:52:43
+
+
+

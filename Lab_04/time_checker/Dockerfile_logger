@@ -1,8 +1,8 @@
 # Використовуємо офіційний образ Python з Docker Hub
 FROM python:3
 
-
-ADD logger2.py /
+RUN pip install requests
+ADD logger.py /
 # Запускаємо програму
 
-CMD [ "python", "./logger2.py" ]
+CMD [ "python", "./logger.py" ]
