@@ -264,7 +264,8 @@ docker compose down
   ```
   
  ### Перевірка роботи контейнера з 1-шим сервісом 
-  being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker exec -it logger1 bash
+ ```sh
+  $ docker exec -it logger1 bash
 
 root@0c1a78ce30fd:/log# ls
 '2023-04-13 11:28:35.txt'  '2023-04-13 11:29:15.txt'  '2023-04-13 11:29:55.txt'   log_dockerfile_ver1.txt
