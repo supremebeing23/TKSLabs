@@ -187,3 +187,65 @@ docker compose down
  ✔ Container logchecker_compose  Removed                                                                                                                          11.7s
  ✔ Container logger_compose      Removed                                                                                                                          11.9s
  ✔ Network time_checker_default  Removed                                                                                                                           0.8s
+
+
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker exec -it logger1 bash
+
+root@0c1a78ce30fd:/log# ls
+'2023-04-13 11:28:35.txt'  '2023-04-13 11:29:15.txt'  '2023-04-13 11:29:55.txt'   log_dockerfile_ver1.txt
+'2023-04-13 11:28:45.txt'  '2023-04-13 11:29:25.txt'  '2023-04-13 11:30:05.txt'
+'2023-04-13 11:28:55.txt'  '2023-04-13 11:29:35.txt'  '2023-04-13 11:30:15.txt'
+'2023-04-13 11:29:05.txt'  '2023-04-13 11:29:45.txt'   log.txt
+root@0c1a78ce30fd:/log# ls
+'2023-04-13 11:28:35.txt'  '2023-04-13 11:29:15.txt'  '2023-04-13 11:29:55.txt'   log.txt
+'2023-04-13 11:28:45.txt'  '2023-04-13 11:29:25.txt'  '2023-04-13 11:30:05.txt'   log_dockerfile_ver1.txt
+'2023-04-13 11:28:55.txt'  '2023-04-13 11:29:35.txt'  '2023-04-13 11:30:15.txt'
+'2023-04-13 11:29:05.txt'  '2023-04-13 11:29:45.txt'  '2023-04-13 11:30:25.txt'
+
+root@0c1a78ce30fd:/log# exit
+exit
+
+
+
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker stop logger1
+logger1
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker build -t checker .
+[+] Building 4.1s (7/7) FINISHED
+ => [internal] load .dockerignore                                                                                  0.6s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load build definition from Dockerfile                                                               0.4s
+ => => transferring dockerfile: 236B                                                                               0.0s
+ => [internal] load metadata for docker.io/library/python:3                                                        1.5s
+ => [internal] load build context                                                                                  0.3s
+ => => transferring context: 434B                                                                                  0.0s
+ => CACHED [1/2] FROM docker.io/library/python:3@sha256:f7382f4f9dbc51183c72d621b9c196c1565f713a1fe40c119d215c961  0.0s
+ => [2/2] ADD logger2.py /                                                                                         0.7s
+ => exporting to image                                                                                             0.9s
+ => => exporting layers                                                                                            0.8s
+ => => writing image sha256:513b7f5da7fe0806fb3157ae340105afc5a98a78ea2006013012a30944c6f70c                       0.1s
+ => => naming to docker.io/library/checker                                                                         0.1s
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker run --name checker -d --volumes-from logger1 checker
+5189304cd51d2ada978d74dc14a84a9c7ea8b4d865dddaa53edb382e7efcc2e9
+
+
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker logs -n 20 checker
+2023-04-13 10:28:41
+2023-04-13 10:28:51
+2023-04-13 10:29:01
+2023-04-13 10:29:11
+2023-04-13 10:29:21
+2023-04-13 10:29:31
+2023-04-13 10:29:41
+2023-04-13 10:29:51
+2023-04-13 10:30:01
+2023-04-13 10:30:11
+2023-04-13 10:30:21
+2023-04-13 10:30:31
+2023-04-13 10:30:41
+2023-04-13 10:30:51
+2023-04-13 10:31:01
+2023-04-13 10:31:11
+2023-04-13 10:31:21
+2023-04-13 10:31:31
+2023-04-13 10:31:41
+2023-04-13 10:31:51
