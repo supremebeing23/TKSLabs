@@ -67,3 +67,123 @@ Content:
 
 
 
+
+
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker compose up
+[+] Running 2/0
+ ✔ Container logchecker_compose  Created                                                                          0.0s
+ ✔ Container logger_compose      Created                                                                          0.0s
+Attaching to logchecker_compose, logger_compose
+
+logchecker_compose  | Filename: /log/log.txt
+logchecker_compose  | Content:
+logchecker_compose  |  2023-04-13 10:44:13
+logchecker_compose  | 2023-04-13 10:44:23
+logchecker_compose  | 2023-04-13 10:44:33
+logchecker_compose  | 2023-04-13 10:44:43
+logchecker_compose  | 2023-04-13 10:44:53
+logchecker_compose  | 2023-04-13 10:45:03
+logchecker_compose  | 2023-04-13 10:45:13
+logchecker_compose  | 2023-04-13 10:45:23
+logchecker_compose  | 2023-04-13 10:45:33
+logchecker_compose  | 2023-04-13 10:45:43
+logchecker_compose  |
+logchecker_compose  | Filename: /log/log.txt
+logchecker_compose  | Content:
+logchecker_compose  |  2023-04-13 10:44:13
+logchecker_compose  | 2023-04-13 10:44:23
+logchecker_compose  | 2023-04-13 10:44:33
+logchecker_compose  | 2023-04-13 10:44:43
+logchecker_compose  | 2023-04-13 10:44:53
+logchecker_compose  | 2023-04-13 10:45:03
+logchecker_compose  | 2023-04-13 10:45:13
+logchecker_compose  | 2023-04-13 10:45:23
+logchecker_compose  | 2023-04-13 10:45:33
+logchecker_compose  | 2023-04-13 10:45:43
+
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker compose up --build -d
+[+] Running 2/2
+ ✔ Container logchecker_compose  Started                                                                                                                          14.0s
+ ✔ Container logger_compose      Started                                                                                                                          13.8s
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker ps
+CONTAINER ID   IMAGE        COMMAND                 CREATED          STATUS         PORTS     NAMES
+ab63eecd9609   log          "python ./logger.py"    16 seconds ago   Up 3 seconds             logger_compose
+71b1b29ca7ef   logchecker   "python ./logger2.py"   16 seconds ago   Up 2 seconds             logchecker_compose
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker exec -it logger_compose bash
+root@ab63eecd9609:/# ls
+bin  boot  dev  etc  home  lib  lib64  log  logger.py  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@ab63eecd9609:/# cd log
+root@ab63eecd9609:/log# more log.txt
+2023-04-13 11:01:06
+2023-04-13 11:01:16
+2023-04-13 11:01:26
+2023-04-13 11:01:36
+root@ab63eecd9609:/log# exit
+exit
+
+
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_04/time_checker$ docker compose logs
+logchecker_compose  | Filename: /log/log.txt
+logchecker_compose  | Content:
+logchecker_compose  |
+logchecker_compose  | Filename: /log/log.txt
+logchecker_compose  | Content:
+logchecker_compose  |
+logchecker_compose  | Filename: /log/log.txt
+logchecker_compose  | Content:
+logchecker_compose  |
+logchecker_compose  | Filename: /log/log.txt
+logchecker_compose  | Content:
+logchecker_compose  |
+logchecker_compose  | Filename: /log/log.txt
+logchecker_compose  | Content:
+logchecker_compose  |  2023-04-13 11:01:06
+logchecker_compose  |
+logchecker_compose  | Filename: /log/log.txt
+logchecker_compose  | Content:
+logchecker_compose  |  2023-04-13 11:01:06
+logchecker_compose  |
+logchecker_compose  | Filename: /log/log.txt
+logchecker_compose  | Content:
+logchecker_compose  |  2023-04-13 11:01:06
+logchecker_compose  |
+logchecker_compose  | Filename: /log/log.txt
+logchecker_compose  | Content:
+logchecker_compose  |  2023-04-13 11:01:06
+logchecker_compose  | 2023-04-13 11:01:16
+logchecker_compose  |
+logchecker_compose  | Filename: /log/log.txt
+logchecker_compose  | Content:
+logchecker_compose  |  2023-04-13 11:01:06
+logchecker_compose  | 2023-04-13 11:01:16
+logchecker_compose  |
+logchecker_compose  | Filename: /log/log.txt
+logchecker_compose  | Content:
+logchecker_compose  |  2023-04-13 11:01:06
+logchecker_compose  | 2023-04-13 11:01:16
+logchecker_compose  |
+logchecker_compose  | Filename: /log/log.txt
+logchecker_compose  | Content:
+logchecker_compose  |  2023-04-13 11:01:06
+logchecker_compose  | 2023-04-13 11:01:16
+logchecker_compose  | 2023-04-13 11:01:26
+logchecker_compose  |
+logchecker_compose  | Filename: /log/log.txt
+logchecker_compose  | Content:
+logchecker_compose  |  2023-04-13 11:01:06
+logchecker_compose  | 2023-04-13 11:01:16
+logchecker_compose  | 2023-04-13 11:01:26
+logchecker_compose  |
+logchecker_compose  | Filename: /log/log.txt
+logchecker_compose  | Content:
+logchecker_compose  |  2023-04-13 11:01:06
+logchecker_compose  | 2023-04-13 11:01:16
+logchecker_compose  | 2023-04-13 11:01:26
+
+
+
+docker compose down
+[+] Running 3/3
+ ✔ Container logchecker_compose  Removed                                                                                                                          11.7s
+ ✔ Container logger_compose      Removed                                                                                                                          11.9s
+ ✔ Network time_checker_default  Removed                                                                                                                           0.8s
