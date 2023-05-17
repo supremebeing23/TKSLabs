@@ -1,0 +1,43 @@
+being@DESKTOP-RCRJVRG:/mnt/c/Users/IT$ docker network create lab
+85aa51da5e23cba0cbf774c6e53015edcfe0832b92731a33b39dfc207578a811
+
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_05$ docker-compose up -d
+Pulling zookeeper (zookeeper:)...
+latest: Pulling from library/zookeeper
+1bc677758ad7: Pull complete
+458b02b5411a: Pull complete
+b04a165ead1d: Pull complete
+1187c73b1850: Pull complete
+5930529b6097: Pull complete
+8b11d2d1cbc9: Pull complete
+5d3163cc8fed: Pull complete
+64efce64799b: Pull complete
+Digest: sha256:1c2283ec6e32f1e0df06e09c310c8a88110e97c3e373abfff0138062b26b906a
+Status: Downloaded newer image for zookeeper:latest
+Pulling kafka (wurstmeister/kafka:)...
+latest: Pulling from wurstmeister/kafka
+42c077c10790: Pull complete
+44b062e78fd7: Pull complete
+b3ba9647f279: Pull complete
+10c9a58bd495: Pull complete
+ed9bd501c190: Pull complete
+03346d650161: Pull complete
+539ec416bc55: Pull complete
+Digest: sha256:2d4bbf9cc83d9854d36582987da5f939fb9255fb128d18e3cf2c6ad825a32751
+Status: Downloaded newer image for wurstmeister/kafka:latest
+Creating lab_05_zookeeper_1 ... done
+Creating lab_05_kafka_1     ... error
+
+ERROR: for lab_05_kafka_1  Cannot start service kafka: driver failed programming external connectivity on endpoint lab_05_kafka_1 (d2e55ec877151778d98d0fcc055f7e57769e17336bb7018081c8001a15265798): Error starting userland proxy: listen tcp4 0.0.0.0:9092: bind: address already in use
+
+ERROR: for kafka  Cannot start service kafka: driver failed programming external connectivity on endpoint lab_05_kafka_1 (d2e55ec877151778d98d0fcc055f7e57769e17336bb7018081c8001a15265798): Error starting userland proxy: listen tcp4 0.0.0.0:9092: bind: address already in use
+ERROR: Encountered errors while bringing up the project.
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_05$ docker-compose up -d
+lab_05_zookeeper_1 is up-to-date
+Starting lab_05_kafka_1 ... done
+
+being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_05$ docker-compose ps
+       Name                     Command               State                    Ports
+------------------------------------------------------------------------------------------------------
+lab_05_kafka_1       start-kafka.sh                   Up      0.0.0.0:9092->9092/tcp,:::9092->9092/tcp
+lab_05_zookeeper_1   /docker-entrypoint.sh zkSe ...   Up      2181/tcp, 2888/tcp, 3888/tcp, 8080/tcp
