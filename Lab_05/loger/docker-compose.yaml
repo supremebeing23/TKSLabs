@@ -1,0 +1,43 @@
+version: "3.7"
+services:
+  zookeeper:
+    image: zookeeper
+    networks:
+      - lab05
+
+  kafka:
+    image: wurstmeister/kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - 9092:9092
+    environment:
+      - KAFKA_ADVERTISED_HOST_NAME=kafka  
+      - KAFKA_BROKER_ID=1
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CREATE_TOPICS=common:1:1
+      - KAFKA_PORT=9092
+    networks:
+      - lab05
+      
+  loger:
+    image: logerkafka     
+    depends_on:
+      - kafka
+    networks:
+      - lab05
+      
+  checker:
+    image: checkerkafka
+    depends_on:
+     - kafka
+    networks:
+      - lab05      
+
+networks:
+  lab05:
+    name: lab05
+    external: true
+
