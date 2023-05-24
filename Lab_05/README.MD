@@ -1,6 +1,7 @@
 ###LAB_05
 
-```being@DESKTOP-RCRJVRG:/mnt/c/Users/IT$ docker network create lab
+```
+being@DESKTOP-RCRJVRG:/mnt/c/Users/IT$ docker network create lab
 85aa51da5e23cba0cbf774c6e53015edcfe0832b92731a33b39dfc207578a811
 ```
 ```
