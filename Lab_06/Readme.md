@@ -1,3 +1,5 @@
+#LAB06 cADVISOR
+```
  sudo docker run \
    --volume=/:/rootfs:ro \
    --volume=/var/run:/var/run:ro \
@@ -18,5 +20,7 @@ ec9db44a3ab4: Pull complete
 Digest: sha256:5ee8e2734bb79a0cf8a1f87e10458527105273006b033e617f0ba848088c9cfc
 Status: Downloaded newer image for gcr.io/cadvisor/cadvisor:v0.36.0
 10d27c20af69c38d247d1663e64ddf404b421c0c93129e9c544d01b1c2836f0a
+```
+
 
 
