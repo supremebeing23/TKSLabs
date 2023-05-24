@@ -1,6 +1,6 @@
 from kafka import KafkaConsumer
 
-consumer = KafkaConsumer('common', bootstrap_servers=['kafka:9092'])
+checker = KafkaConsumer('common', bootstrap_servers=['kafka:9092'])
 
-for message in consumer:
+for message in checker:
     print(f"Received message: {message.value.decode()}")

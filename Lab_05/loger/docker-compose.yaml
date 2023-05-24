@@ -3,7 +3,7 @@ services:
   zookeeper:
     image: zookeeper
     networks:
-      - lab05
+      - lab
 
   kafka:
     image: wurstmeister/kafka
@@ -18,26 +18,29 @@ services:
       - KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_CREATE_TOPICS=common:1:1
-      - KAFKA_PORT=9092
     networks:
-      - lab05
+      - lab
       
   loger:
     image: logerkafka     
     depends_on:
       - kafka
     networks:
-      - lab05
+      - lab
+    restart: always  
       
   checker:
     image: checkerkafka
     depends_on:
      - kafka
     networks:
-      - lab05      
+      - lab    
+    restart: always
+    environment:
+      PYTHONUNBUFFERED: '1'    
 
 networks:
-  lab05:
-    name: lab05
+  lab:
+    name: lab
     external: true
 

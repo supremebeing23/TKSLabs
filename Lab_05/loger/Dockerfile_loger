@@ -1,8 +1,7 @@
 # Використовуємо офіційний образ Python з Docker Hub
 FROM python:3
 
-RUN pip install kafka-python
-ADD checker.py /
+RUN pip install kafka-python==2.0.2
 # Запускаємо програму
 
-CMD [ "python", "./checker.py" ]
+CMD [ "python", "./loger.py" ]
