@@ -1,6 +1,7 @@
-being@DESKTOP-RCRJVRG:/mnt/c/Users/IT$ docker network create lab
+```being@DESKTOP-RCRJVRG:/mnt/c/Users/IT$ docker network create lab
 85aa51da5e23cba0cbf774c6e53015edcfe0832b92731a33b39dfc207578a811
-
+```
+```
 being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_05$ docker-compose up -d
 Pulling zookeeper (zookeeper:)...
 latest: Pulling from library/zookeeper
@@ -35,9 +36,12 @@ ERROR: Encountered errors while bringing up the project.
 being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_05$ docker-compose up -d
 lab_05_zookeeper_1 is up-to-date
 Starting lab_05_kafka_1 ... done
+```
 
+```
 being@DESKTOP-RCRJVRG:~/TKSLabs/Lab_05$ docker-compose ps
        Name                     Command               State                    Ports
 ------------------------------------------------------------------------------------------------------
 lab_05_kafka_1       start-kafka.sh                   Up      0.0.0.0:9092->9092/tcp,:::9092->9092/tcp
 lab_05_zookeeper_1   /docker-entrypoint.sh zkSe ...   Up      2181/tcp, 2888/tcp, 3888/tcp, 8080/tcp
+```
